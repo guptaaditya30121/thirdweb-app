@@ -9,8 +9,8 @@ export default function Getusercount(){
         <div>
             <Web3Button contractAddress= "0xAdd87CE1BDAc4d8b0286AcAb9B04eBb25303D560"
                         action={(contract) => contract.call(
-                            "getAllClaims",
-                            ["0x6c47D516004DC29cDb14A5C14D576E41055bDb95"]
+                            "getAllReqClaims",
+                            [],{from: "0x6c47D516004DC29cDb14A5C14D576E41055bDb95"}
                         )}
                         onSuccess={(results)=>{
                             console.log(results);

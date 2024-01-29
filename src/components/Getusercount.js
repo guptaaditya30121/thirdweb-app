@@ -1,5 +1,5 @@
 import { Web3Button } from "@thirdweb-dev/react";
-
+import './Web3ButtonStyles.css';
 
 
 export default function Getusercount(){
@@ -9,7 +9,9 @@ export default function Getusercount(){
     var contractAddress = "0x59055d567418068Af2ba08a9F36c3505136F8691";
     return (
         <div>
-            <Web3Button contractAddress= {contractAddress}
+            <div className="web3Button">
+            <Web3Button 
+                        contractAddress= {contractAddress}
                         action={(contract) => contract.call(
                             "showUser",
                             [],{from: userAddress}
@@ -17,8 +19,11 @@ export default function Getusercount(){
                         onSuccess={(results)=>{
                             console.log(results);
                         }}
-            > show User </Web3Button>
-
+                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
+                          
+            > Show User </Web3Button>
+            </div>
+{/* 
             <Web3Button contractAddress= {contractAddress}
                         action={(contract) => contract.call(
                             "addUser",
@@ -157,7 +162,7 @@ export default function Getusercount(){
                         onSuccess={(results)=>{
                             console.log(results);
                         }}
-            > Get all Info </Web3Button> 
+            > Get all Info </Web3Button>  */}
 
 
         </div>

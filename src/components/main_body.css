@@ -1,0 +1,78 @@
+.master_container{
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.288);
+}
+.container{
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    top: 4vh;
+}
+
+.profile{
+    /* border: 2px solid red; */
+    width: 18%;
+    position: relative;
+    /* left: 7%; */
+    top: 6%;
+    background-color: white;
+    border-radius: 10px;
+    height: 35vh;
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+img{
+    height: 23vh;
+    width: 23vh;
+    border-radius: 50%;
+    /* border: 0.2px solid grey; */
+}
+
+.avatar_box{
+    text-align: center;
+    position: relative;
+    top: 7%;
+}
+
+.edit{
+    position: relative;
+    left: 67%;
+    top: -4%;
+    font-size: larger;
+}
+
+.username{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0.5vh;
+}
+
+.sub_name{
+    text-align: center;
+    color: rgb(112, 110, 110);
+}
+
+.action_buttons{
+    position: relative;
+    top: 6%;
+    width: 30%;
+    height: 35vh;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.heading{
+    font-size: 1.8rem;
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1vh;
+}
+
+.parent_button{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}

@@ -1,0 +1,34 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5vh;
+}
+.navbar_left{
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+    /* border: 2px solid red; */
+    background-color: #FFFFFF;
+    align-items: center;
+}
+
+.navbar_right{
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+
+.nav_component{
+    font-weight: 600;
+    font-size: 1.4rem;
+    /* background-color: #FFFFFF; */
+}
+
+.bell_icon{
+    border-radius: 50%;
+    background-color: #BAE84D;
+    padding: 16px;
+    font-size: larger;
+    text-align: center;
+}

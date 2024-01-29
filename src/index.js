@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "./styles/globals.css";
 import { Sepolia } from "@thirdweb-dev/chains"
+import LandingPage from "./landingPage/landingPage.jsx";
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -19,7 +20,8 @@ root.render(
       activeChain={activeChain}
       clientId={process.env.REACT_APP_TEMPLATE_CLIENT_ID}
     >
-      <App />
+      {/* <App /> */}
+      <LandingPage />
     </ThirdwebProvider>
   </React.StrictMode>
 );

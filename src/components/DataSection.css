@@ -1,5 +1,8 @@
 .data{
     display: flex;
+    font-family: "poppins";
+    font-size: 20px;
+    text-align: left;
   }
   .data p{
     text-align: center;
@@ -31,6 +34,9 @@
     padding: 4px; 
     margin: 10px;
     margin-top: -15px;
+    font-family: "poppins";
+    font-size: 10px;
+    
     /* left: 2%; */
   }
   .scroll-container{

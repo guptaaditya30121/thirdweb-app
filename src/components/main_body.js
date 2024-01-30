@@ -35,18 +35,20 @@ const Content = () => {
             </div>
             <div className='parent_button'>
             <div className="web3Button">
-            <Web3Button 
-                        contractAddress= {contractAddress}
-                        action={(contract) => contract.call(
-                            "showUser",
-                            [],{from: userAddress}
-                        )}
-                        onSuccess={(results)=>{
-                            console.log(results);
-                        }}
-                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
-                          
-            > Button 1</Web3Button>
+              <Web3Button 
+                  contractAddress= {contractAddress}
+                  action={(contract) => contract.call(
+                      "addUser",
+                      [userAddress],{from: userAddress}
+                  )}
+                  onSuccess={(results)=>{
+					toast.success('User Added to DocChain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
+                  }}
+                  onError={(error)=>{
+					toast.error('User Already Exists', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
+                  }}
+                  style={{backgroundColor: '#FFFFEC',color: 'black',fontSize: '20px', fontFamily: 'poppins'}}            
+              > Add Yourself </Web3Button>
             </div>
             <div className="web3Button">
             <Web3Button 
@@ -72,7 +74,7 @@ const Content = () => {
                         onSuccess={(results)=>{
                             console.log(results);
                         }}
-                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
+                        style={{backgroundColor: '#FFFFEC',color: 'black',fontSize: '20px', fontFamily: 'poppins'}}
                           
             > Button 3</Web3Button>
             </div>
@@ -86,7 +88,7 @@ const Content = () => {
                         onSuccess={(results)=>{
                             console.log(results);
                         }}
-                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
+                        style={{backgroundColor: '#FFFFEC',color: 'black',fontSize: '20px', fontFamily: 'poppins'}}
                           
             > Button 4</Web3Button>
             </div>

@@ -12,8 +12,8 @@ body, html {
   
   .sticky-footer {
     margin-top: auto; /* Pushes the footer to the bottom */
-    background-color: rgba(186, 232, 77, 1);
-    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    color: rgb(159, 100, 11);
     padding: 10px;
     text-align: center;
   }

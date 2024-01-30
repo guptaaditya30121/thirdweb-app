@@ -1,4 +1,4 @@
-.data{
+  .data{
     display: flex;
   }
   .data p{
@@ -19,7 +19,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 33%;
     border-radius: 0.5cm;
-    background-color: white;
+    background-color: #FFFFEC;
     position: relative;
     top: 10vh;
   }
@@ -68,3 +68,13 @@
     margin-right: 1px;
   }
   
+  
+  .data-table {
+    transition: all 0.3s ease-in-out;
+    /* Ensure it's initially visible */
+  }
+  
+  .data-table.collapsed {
+    /* Styles when collapsed (you can set display: none or transform it off-screen) */
+    display: none;
+  }

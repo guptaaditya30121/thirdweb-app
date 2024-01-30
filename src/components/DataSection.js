@@ -1,15 +1,16 @@
 import React from 'react';
 import './DataSection.css'
+import './main_body.css';
   const DataSection = () => {
     return (
-      <div className="data-section">
-        <div className="data">
-          <p>
-            <strong>Data</strong>
-          </p>
+      <div className='parent_data_div'>
+            <div className="data">
+            <p>
+                <strong>Data</strong>
+            </p>
+            </div>
+            <DataCard />
         </div>
-        <DataCard />
-      </div>
     );
   };
   

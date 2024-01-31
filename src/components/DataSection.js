@@ -1,6 +1,6 @@
 import React from 'react';
 import './DataSection.css'
-import './main_body.css';
+import './main_body.css';  
   const DataSection = () => {
     return (
       <div className='parent_data_div'>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './main_body.css';
 import avatar from './avatar.jpg';
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,8 +17,10 @@ import { useState } from "react";
 const Content = () => {
     const contractAddress = "0xc82C534155BA18914c161C836ce2D43936e1E71c";
     const userAddress = useAddress();
-    const { contract } = useContract({contractAddress});
+    const { contract } = useContract(contractAddress);
     const [ openModal, setOpenModal ]  = useState(false);
+    const [ claimdata, setclaimdata] = useState(false);
+    const [ requestdata, setrequestdata] = useState(false);
     const copyToClipboard = (text) => {
       navigator.clipboard.writeText(text)
         .then(() => {
@@ -28,6 +30,36 @@ const Content = () => {
           console.error('Failed to copy text: ', err);
         });
     };
+
+    useEffect(() => {
+        if(contract){
+          const fetchDataFromContract = async () => {
+            const result = await contract.call(
+              "getAllClaims",
+              [],
+              {from: userAddress},
+            );
+            setclaimdata(result);
+            console.log(result);
+          }
+          fetchDataFromContract();
+        }
+    }, [contract]);
+
+    useEffect(() => {
+        if(contract){
+          const fetchDataFromContract = async () => {
+            const result = await contract.call(
+              "getAllReqClaims",
+              [],
+              {from: userAddress},
+            );
+            setrequestdata(result);
+            console.log(result);
+          }
+          fetchDataFromContract();
+        }
+    }, [contract]);
   
     return (
     <div>
@@ -35,16 +67,16 @@ const Content = () => {
     <div className='master_container'>
 
 		<ToastContainer
-		position="top-right"
-		autoClose={5000}
-		hideProgressBar={false}
-		newestOnTop={false}
-		closeOnClick
-		rtl={false}
-		pauseOnFocusLoss
-		draggable
-		pauseOnHover
-		theme="dark"
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
 		/>
       <div className="container">
       <div className="action_buttons">
@@ -65,7 +97,7 @@ const Content = () => {
                   onError={(error)=>{
 					toast.error('User Already Exists', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
                   }}
-                  style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}            
+                  style={{backgroundColor: 'white', color: 'black',fontSize: '25px'}}            
               > Add Yourself </Web3Button>
             </div>
 
@@ -84,7 +116,11 @@ const Content = () => {
 
 
             <div className="web3Button">
-                <button onClick={() => {setOpenModal(true);}}></button>
+                <Web3Button contractAddress= {contractAddress}
+                        action={() => {setOpenModal(true);}}
+                    style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}>
+                    Make a Claim
+                </Web3Button>
             </div>
             <div className="web3Button">
             <Web3Button 
@@ -198,8 +234,8 @@ const Content = () => {
         </div>
       </div>
       <div className="data-section">
-        <DataSection/>
-        <DataSection/>
+        <DataSection data={claimdata}/>
+        <DataSection data={requestdata}/>
       </div>
       </div>
       </div>

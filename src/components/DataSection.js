@@ -1,7 +1,7 @@
 import React from 'react';
 import './DataSection.css'
 import './main_body.css';  
-  const DataSection = () => {
+  const DataSection = ({data}) => {
     return (
       <div className='parent_data_div'>
             <div className="data">
@@ -9,26 +9,24 @@ import './main_body.css';
                 <strong>Data</strong>
             </p>
             </div>
-            <DataCard />
+            <DataCard data = {data}/>
         </div>
     );
   };
   
   // Data Card Component
-  const DataCard = () => {
+  const DataCard = ({data}) => {
     return (
       <div className="data-card">
         <div className="scroll-container">
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
-          <DataField field="Field" value="Value" issuer="Issuer" />
+        { data && data[0].map((field, index) => (
+            <DataField
+              key={index}
+              field={field}
+              value={data[1][index]}
+              issuer={data[2][index]}
+            />
+          ))}
         </div>
       </div>
     );
@@ -40,26 +38,26 @@ import './main_body.css';
       <div className="data-field">
         <div className="on-line">
           <div className="left-line">
-            <p><strong>{field}</strong></p>
+            <p><strong>Field</strong></p>
           </div>
           <div className="right-line">
-            <p>lorem ipsum dolor</p>
+            <p>{field}</p>
           </div>
         </div>
         <div className="on-line">
           <div className="left-line">
-            <p><strong>{value}</strong></p>
+            <p><strong>Value</strong></p>
           </div>
           <div className="right-line">
-            <p>lorem ipsum</p>
+            <p>{value}</p>
           </div>
         </div>
         <div className="on-line">
           <div className="left-line">
-            <p><strong>{issuer}</strong></p>
+            <p><strong>Issuer</strong></p>
           </div>
           <div className="right-line">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, laboriosam.</p>
+            <p>{issuer}</p>
           </div>
         </div>
       </div>

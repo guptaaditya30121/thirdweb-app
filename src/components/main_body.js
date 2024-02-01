@@ -8,7 +8,8 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { Web3Button, useAddress, useContract, useContractRead } from "@thirdweb-dev/react";
 import './Web3ButtonStyles.css';
-import MakeClaimModal from './MakeClaimModal.js'
+import MakeClaimModal from './MakeClaimModal.js';
+import RequestClaimModal from './RequestClaimModal.js';
 // import {CONTRACT_ADDRESS}  from '../const/addresses.ts';
 import './DataSection.css'
 import DataSection from './DataSection';
@@ -18,7 +19,8 @@ const Content = () => {
     const contractAddress = "0xc82C534155BA18914c161C836ce2D43936e1E71c";
     const userAddress = useAddress();
     const { contract } = useContract(contractAddress);
-    const [ openModal, setOpenModal ]  = useState(false);
+    const [ openClaimModal, setOpenClaimModal ]  = useState(false);
+    const [ openReqModal, setOpenReqModal ]  = useState(false);
     const [ claimdata, setclaimdata] = useState(false);
     const [ requestdata, setrequestdata] = useState(false);
     const copyToClipboard = (text) => {
@@ -63,7 +65,8 @@ const Content = () => {
   
     return (
     <div>
-        {openModal  && <MakeClaimModal setOpenModal={setOpenModal} />}
+        {openClaimModal  && <MakeClaimModal setOpenModal={setOpenClaimModal} />}
+        {openReqModal && <RequestClaimModal setOpenModal={setOpenReqModal} />}
     <div className='master_container'>
 
 		<ToastContainer
@@ -117,7 +120,7 @@ const Content = () => {
 
             <div className="web3Button">
                 <Web3Button contractAddress= {contractAddress}
-                        action={() => {setOpenModal(true);}}
+                        action={() => {setOpenClaimModal(true);}}
                     style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}>
                     Make a Claim
                 </Web3Button>
@@ -189,17 +192,13 @@ const Content = () => {
             </div>
 
 
-            {/* <div className="web3Button">
+            <div className="web3Button">
             <Web3Button contractAddress= {contractAddress}
-                        action={(contract) => contract.call(
-                            "makeClaim",
-                            [userAddress2 , "Field" , "Value"],{from: userAddress}
-                        )}
-                        onSuccess={(results)=>{
-                            console.log(results);
-                        }}
-            > Make Claim </Web3Button>
-            </div> */}
+                        action={() => {setOpenReqModal(true);}}
+                    style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}>
+                    Request a Claim
+                </Web3Button>
+            </div>
 
 
             <div className="web3Button">

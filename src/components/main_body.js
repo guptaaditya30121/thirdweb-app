@@ -4,15 +4,17 @@ import avatar from './avatar.jpg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
-import { Web3Button, useAddress, useContract, useContractRead } from "@thirdweb-dev/react";
+import { Web3Button, useAddress, useContract } from "@thirdweb-dev/react";
 import './Web3ButtonStyles.css';
 import MakeClaimModal from './MakeClaimModal.js';
 import RequestClaimModal from './RequestClaimModal.js';
-// import {CONTRACT_ADDRESS}  from '../const/addresses.ts';
+import RequestInfoModal from './RequestInfoModal.js';
 import './DataSection.css'
-import DataSection from './DataSection';
+import ClaimDataSection from './ClaimDataSection.js';
+import InfoDataSection from './InfoDataSection.js';
+import AnsClaimsDataSection from './AnsClaimsDataSection.js';
+import AnsInfoDataSection from './AnsInfoDataSection.js';
 import { useState } from "react";
 
 const Content = () => {
@@ -21,6 +23,7 @@ const Content = () => {
     const { contract } = useContract(contractAddress);
     const [ openClaimModal, setOpenClaimModal ]  = useState(false);
     const [ openReqModal, setOpenReqModal ]  = useState(false);
+    const [ openReqInfoModal , setOpenReqInfoModal ] = useState(false);
     const [ claimdata, setclaimdata] = useState(false);
     const [ requestdata, setrequestdata] = useState(false);
     const copyToClipboard = (text) => {
@@ -67,6 +70,7 @@ const Content = () => {
     <div>
         {openClaimModal  && <MakeClaimModal setOpenModal={setOpenClaimModal} />}
         {openReqModal && <RequestClaimModal setOpenModal={setOpenReqModal} />}
+        {openReqInfoModal && <RequestInfoModal setOpenModal={setOpenReqInfoModal} />}
     <div className='master_container'>
 
 		<ToastContainer
@@ -104,54 +108,12 @@ const Content = () => {
               > Add Yourself </Web3Button>
             </div>
 
-
-            {/* <div className="web3Button">
-            <Web3Button contractAddress= {contractAddress}
-                        action={(contract) => contract.call(
-                            "makeClaim",
-                            [userAddress2 , "Field" , "Value"],{from: userAddress}
-                        )}
-                        onSuccess={(results)=>{
-                            console.log(results);
-                        }}
-            > Make Claim </Web3Button>
-            </div> */}
-
-
             <div className="web3Button">
                 <Web3Button contractAddress= {contractAddress}
-                        action={() => {setOpenClaimModal(true);}}
+                        action={() => {setOpenReqInfoModal(true);}}
                     style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}>
-                    Make a Claim
+                    Request Field Info
                 </Web3Button>
-            </div>
-            <div className="web3Button">
-            <Web3Button 
-                        contractAddress= {contractAddress}
-                        action={(contract) => contract.call(
-                            "showUser",
-                            [],{from: userAddress}
-                        )}
-                        onSuccess={(results)=>{
-                            console.log(results);
-                        }}
-                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
-                          
-            > Button 3</Web3Button>
-            </div>
-            <div className="web3Button">
-            <Web3Button 
-                        contractAddress= {contractAddress}
-                        action={(contract) => contract.call(
-                            "showUser",
-                            [],{from: userAddress}
-                        )}
-                        onSuccess={(results)=>{
-                            console.log(results);
-                        }}
-                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
-                          
-            > Button 4</Web3Button>
             </div>
             </div>
         </div>
@@ -175,20 +137,11 @@ const Content = () => {
 
 
             <div className="web3Button">
-              <Web3Button 
-                  contractAddress= {contractAddress}
-                  action={(contract) => contract.call(
-                      "addUser",
-                      [userAddress],{from: userAddress}
-                  )}
-                  onSuccess={(results)=>{
-					toast.success('User Added to DocChain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
-                  }}
-                  onError={(error)=>{
-					toast.error('User Already Exists', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
-                  }}
-                  style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}            
-              > Add Yourself </Web3Button>
+                <Web3Button contractAddress= {contractAddress}
+                        action={() => {setOpenClaimModal(true);}}
+                    style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}>
+                    Make a Claim
+                </Web3Button>
             </div>
 
 
@@ -200,41 +153,20 @@ const Content = () => {
                 </Web3Button>
             </div>
 
-
-            <div className="web3Button">
-            <Web3Button 
-                        contractAddress= {contractAddress}
-                        action={(contract) => contract.call(
-                            "showUser",
-                            [],{from: userAddress}
-                        )}
-                        onSuccess={(results)=>{
-                            console.log(results);
-                        }}
-                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
-                          
-            > Button 3</Web3Button>
-            </div>
-            <div className="web3Button">
-            <Web3Button 
-                        contractAddress= {contractAddress}
-                        action={(contract) => contract.call(
-                            "showUser",
-                            [],{from: userAddress}
-                        )}
-                        onSuccess={(results)=>{
-                            console.log(results);
-                        }}
-                        style={{backgroundColor: 'white',color: 'black',fontSize: '25px'}}
-                          
-            > Button 4</Web3Button>
-            </div>
             </div>
         </div>
       </div>
       <div className="data-section">
-        <DataSection data={claimdata}/>
-        <DataSection data={requestdata}/>
+        <ClaimDataSection data={claimdata}/>
+        {/* <InfoDataSection data={infodata}/> */}
+        <InfoDataSection data={claimdata}/>
+
+      </div>
+      <br/>
+      <br/>
+      <div className="data-section">
+        <AnsClaimsDataSection data={claimdata}/>
+        <AnsInfoDataSection data={requestdata}/>
       </div>
       </div>
       </div>

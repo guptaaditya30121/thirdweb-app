@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./MakeClaimModal.css";
-import { Web3Button, useAddress, useContract, useContractWrite } from "@thirdweb-dev/react";
+import { Web3Button, useAddress, useContract} from "@thirdweb-dev/react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,7 +11,6 @@ function MakeClaimModal({ setOpenModal }) {
   const { contract } = useContract(contractAddress);
   const [formData, setFormData] = useState({
     Field: '',
-    Value: '',
     UserAddress: '',
   });
 
@@ -37,7 +36,7 @@ function MakeClaimModal({ setOpenModal }) {
           </button>
         </div>
         <div className="title">
-          <h1>Request a Claim</h1>
+          <h1>Request Field Information</h1>
         </div>
         <form className="form-field">
           <label>
@@ -51,17 +50,7 @@ function MakeClaimModal({ setOpenModal }) {
           </label>
           <br />
           <label>
-            Value:
-            <input
-              type="text"
-              name="Value" // Match name attribute with formData key
-              value={formData.Value}
-              onChange={handleInputChange}
-            />
-          </label>
-          <br />
-          <label>
-            Request to:
+            Request From:
             <input
               type="text" // Use "type" instead of "name"
               name="UserAddress" // Match name attribute with formData key
@@ -76,7 +65,7 @@ function MakeClaimModal({ setOpenModal }) {
                 contractAddress = {contractAddress}
                 action={() => {
                     if(contract){
-                        contract.call("requestClaim", [formData.UserAddress,formData.Field,formData.Value], {from: userAddress});
+                        contract.call("reqFieldInfo", [formData.UserAddress,formData.Field], {from: userAddress});
                         console.log("ho");
                     }
                     else{
@@ -84,7 +73,7 @@ function MakeClaimModal({ setOpenModal }) {
                     }
                 }}
                 onSuccess={(results)=>{
-                    toast.success('Claim added to Blockchain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
+                    toast.success('Request of Info added to Blockchain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
                     // setOpenModal(false);	
                 }}
                 onError={(error)=>{
@@ -93,7 +82,7 @@ function MakeClaimModal({ setOpenModal }) {
                 }}
                 style={{backgroundColor: '#BAE84D',color: 'white',fontSize: '24px'}}
             >
-            Request Claim
+            Request
             </Web3Button>
           <button
             onClick={() => {

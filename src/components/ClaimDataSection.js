@@ -1,12 +1,12 @@
 import React from 'react';
 import './DataSection.css'
 import './main_body.css';  
-  const DataSection = ({data}) => {
+  const ClaimDataSection = ({data}) => {
     return (
       <div className='parent_data_div'>
             <div className="data">
             <p>
-                <strong>Data</strong>
+                <strong>All Your Claims</strong>
             </p>
             </div>
             <DataCard data = {data}/>
@@ -64,4 +64,4 @@ import './main_body.css';
     );
   };
 
-export default DataSection;
+export default ClaimDataSection;

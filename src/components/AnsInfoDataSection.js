@@ -23,8 +23,9 @@ import './main_body.css';
             <DataField
               key={index}
               field={field}
-              value={data[1][index]}
-              issuer={data[2][index]}
+              index={index}
+              RequestedBy={data[1][index]}
+              status={data[2][index]}
             />
           ))}
         </div>
@@ -33,10 +34,10 @@ import './main_body.css';
   };
   
   // Data Field Component
-  const DataField = ({ field, value, issuer }) => {
+  const DataField = ({ field, index , RequestedBy , status }) => {
     return (
       <div className="data-field">
-        <div className="on-line">
+         <div className="on-line">
           <div className="left-line">
             <p><strong>Field</strong></p>
           </div>
@@ -46,20 +47,25 @@ import './main_body.css';
         </div>
         <div className="on-line">
           <div className="left-line">
-            <p><strong>Value</strong></p>
+            <p><strong>Requested By:</strong></p>
           </div>
           <div className="right-line">
-            <p>{value}</p>
+            <p>{RequestedBy}</p>
           </div>
         </div>
         <div className="on-line">
           <div className="left-line">
-            <p><strong>Issuer</strong></p>
+            <p><strong>Status</strong></p>
           </div>
           <div className="right-line">
-            <p>{issuer}</p>
+            {status === true && <p>true</p>}
+            {status === false && <p>false</p>}
           </div>
         </div>
+        <div className="on-line_buttons-line">
+        <button className="right_accept">Accept</button>
+        <button className="right_decline">Decline</button>
+        </div> 
       </div>
     );
   };

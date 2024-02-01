@@ -11,7 +11,7 @@ import { useConnectionStatus } from "@thirdweb-dev/react";
 export default function Home() {
   const connectionStatus = useConnectionStatus();
   const userAddress = useAddress();
-  const contractAddress = "0xc82C534155BA18914c161C836ce2D43936e1E71c";
+  const contractAddress = "0xd073B9D487E7F49E074c01fa8e4BbD5A4f301dA3";
   const {
     contract 
   } = useContract(contractAddress);

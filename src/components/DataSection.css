@@ -78,3 +78,39 @@
     /* Styles when collapsed (you can set display: none or transform it off-screen) */
     display: none;
   }
+
+  .data-field .on-line_buttons-line .right_accept {
+    color: #122631;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px; /* Reduced font size */
+    font-style: normal;
+    font-weight: 600;
+    line-height: 12px; /* Adjusted line-height */
+    display: inline-flex;
+    padding: 6px 10px; /* Adjusted padding for a smaller button */
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+    border-radius: 12px; /* Reduced border-radius */
+    background: #36ba01;
+    margin: 8px; /* Adjusted margin */
+   }
+
+  .data-field .on-line_buttons-line .right_decline {
+    color: #122631;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px; /* Reduced font size */
+    font-style: normal;
+    font-weight: 600;
+    line-height: 12px; /* Adjusted line-height */
+    display: inline-flex;
+    padding: 6px 10px; /* Adjusted padding for a smaller button */
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+    border-radius: 12px; /* Reduced border-radius */
+    background: #e5402e;
+    margin: 8px; /* Adjusted margin */
+ }

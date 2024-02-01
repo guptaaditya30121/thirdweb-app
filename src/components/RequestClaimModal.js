@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function MakeClaimModal({ setOpenModal }) {
-  const contractAddress = "0xc82C534155BA18914c161C836ce2D43936e1E71c";
+  const contractAddress = "0xd073B9D487E7F49E074c01fa8e4BbD5A4f301dA3";
   const userAddress = useAddress(); // Define useAddress() function to get user's address
 
   const { contract } = useContract(contractAddress);

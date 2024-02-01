@@ -18,14 +18,16 @@ import AnsInfoDataSection from './AnsInfoDataSection.js';
 import { useState } from "react";
 
 const Content = () => {
-    const contractAddress = "0xc82C534155BA18914c161C836ce2D43936e1E71c";
+    const contractAddress = "0xd073B9D487E7F49E074c01fa8e4BbD5A4f301dA3";
     const userAddress = useAddress();
     const { contract } = useContract(contractAddress);
     const [ openClaimModal, setOpenClaimModal ]  = useState(false);
     const [ openReqModal, setOpenReqModal ]  = useState(false);
     const [ openReqInfoModal , setOpenReqInfoModal ] = useState(false);
     const [ claimdata, setclaimdata] = useState(false);
-    const [ requestdata, setrequestdata] = useState(false);
+    const [ claimrequestdata, setclaimrequestdata] = useState(false);
+    const [ infodata, setinfodata] = useState(false);
+    const [ requestinfodata, setrequestinfodata] = useState(false);
     const copyToClipboard = (text) => {
       navigator.clipboard.writeText(text)
         .then(() => {
@@ -55,16 +57,46 @@ const Content = () => {
         if(contract){
           const fetchDataFromContract = async () => {
             const result = await contract.call(
-              "getAllReqClaims",
+              "getAllReqFromMeClaims",
               [],
               {from: userAddress},
             );
-            setrequestdata(result);
+            setclaimrequestdata(result);
             console.log(result);
           }
           fetchDataFromContract();
         }
     }, [contract]);
+
+    useEffect(() => {
+      if(contract){
+        const fetchDataFromContract = async () => {
+          const result = await contract.call(
+            "getAllinfo",
+            [],
+            {from: userAddress},
+          );
+          setinfodata(result);
+          console.log(result);
+        }
+        fetchDataFromContract();
+      }
+  }, [contract]);
+
+  useEffect(() => {
+    if(contract){
+      const fetchDataFromContract = async () => {
+        const result = await contract.call(
+          "getAllFieldRequestFromMe",
+          [],
+          {from: userAddress},
+        );
+        setrequestinfodata(result);
+        console.log(result);
+      }
+      fetchDataFromContract();
+    }
+}, [contract]);
   
     return (
     <div>
@@ -159,14 +191,14 @@ const Content = () => {
       <div className="data-section">
         <ClaimDataSection data={claimdata}/>
         {/* <InfoDataSection data={infodata}/> */}
-        <InfoDataSection data={claimdata}/>
+        <InfoDataSection data={infodata}/>
 
       </div>
       <br/>
       <br/>
       <div className="data-section">
-        <AnsClaimsDataSection data={claimdata}/>
-        <AnsInfoDataSection data={requestdata}/>
+        <AnsClaimsDataSection data={claimrequestdata}/>
+        <AnsInfoDataSection data={requestinfodata}/>
       </div>
       </div>
       </div>

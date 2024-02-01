@@ -23,6 +23,7 @@ import './main_body.css';
             <DataField
               key={index}
               field={field}
+              index={index}
               value={data[1][index]}
               issuer={data[2][index]}
             />
@@ -33,7 +34,17 @@ import './main_body.css';
   };
   
   // Data Field Component
-  const DataField = ({ field, value, issuer }) => {
+  const DataField = ({ field, value, issuer , index }) => {
+    const handleButtonClick = (action, index) => {
+      if(action === 'Accept') //accept it
+      {
+
+      }
+      else  // or decline it
+      {
+
+      }
+    };
     return (
       <div className="data-field">
         <div className="on-line">
@@ -51,6 +62,10 @@ import './main_body.css';
           <div className="right-line">
             <p>{issuer}</p>
           </div>
+        </div>
+        <div className="on-line_buttons-line">
+          <button className="right_accept" onClick={() => handleButtonClick('Accept', index)}>Accept</button>
+          <button className="right_decline" onClick={() => handleButtonClick('Decline', index)}>Decline</button>
         </div>
       </div>
     );

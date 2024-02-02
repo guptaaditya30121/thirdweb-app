@@ -1,7 +1,6 @@
 import React from 'react';
 import "./BuildingAccess.css";
-import image from '../src/components/Image2.png';
-import { ConnectWallet } from "@thirdweb-dev/react";
+import PropertySection from './components/propertysection';
 
 const HomePage = () => {
   return (
@@ -19,7 +18,6 @@ const HomePage = () => {
         </div>
       </header>
       <hr className="line" /><br /><br /><br /><br /><br /><br />
-
       
     </div>
   );

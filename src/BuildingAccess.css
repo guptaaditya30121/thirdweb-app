@@ -98,3 +98,31 @@ header {
   height: 660px;
 
 }
+
+.text-wrapper-13 {
+    color: #ffffec;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 36px;
+    font-weight: 500;
+    left: 70px;
+    letter-spacing: 0;
+    line-height: 28px;
+    position: absolute;
+    text-align: center;
+    top: 187px;
+    white-space: nowrap;
+  }
+
+  .text-wrapper-14 {
+    color: #ffffec;
+    font-family: "Inter-Medium", Helvetica;
+    font-size: 36px;
+    font-weight: 500;
+    left: 70px;
+    letter-spacing: 0;
+    line-height: 28px;
+    position: absolute;
+    text-align: center;
+    top: 624px;
+    white-space: nowrap;
+  }

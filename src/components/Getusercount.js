@@ -6,7 +6,7 @@ export default function Getusercount(){
 
     var userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95";
     var userAddress2 = "0x14FFe36CB84adEF9C0577C3CB31E596a5C1df403";
-    var contractAddress = "0x59055d567418068Af2ba08a9F36c3505136F8691";
+    var contractAddress = "0x6Cd365f8524F7c5e3FfD8ab9079292b88FB34927";
     return (
         <div>
             <div className="web3Button">

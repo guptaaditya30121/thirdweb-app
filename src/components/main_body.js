@@ -18,7 +18,7 @@ import AnsInfoDataSection from './AnsInfoDataSection.js';
 import { useState } from "react";
 
 const Content = () => {
-    const contractAddress = "0xd073B9D487E7F49E074c01fa8e4BbD5A4f301dA3";
+    const contractAddress = "0x6Cd365f8524F7c5e3FfD8ab9079292b88FB34927";
     const userAddress = useAddress();
     const { contract } = useContract(contractAddress);
     const [ openClaimModal, setOpenClaimModal ]  = useState(false);
@@ -37,6 +37,9 @@ const Content = () => {
           console.error('Failed to copy text: ', err);
         });
     };
+    const everyMillisecondAmount = parseInt(
+      (10_000_000_000_000 / 2.1).toFixed(0)
+    );
 
     useEffect(() => {
         if(contract){
@@ -50,8 +53,12 @@ const Content = () => {
             console.log(result);
           }
           fetchDataFromContract();
+
+          const intervalId = setInterval(fetchDataFromContract, 2000);
+
+          return () => clearInterval(intervalId);
         }
-    }, [contract]);
+    }, [contract , everyMillisecondAmount , userAddress]);
 
     useEffect(() => {
         if(contract){
@@ -65,8 +72,12 @@ const Content = () => {
             console.log(result);
           }
           fetchDataFromContract();
+
+          const intervalId = setInterval(fetchDataFromContract, 2000);
+
+          return () => clearInterval(intervalId);
         }
-    }, [contract]);
+    }, [contract , everyMillisecondAmount , userAddress]);
 
     useEffect(() => {
       if(contract){
@@ -80,8 +91,12 @@ const Content = () => {
           console.log(result);
         }
         fetchDataFromContract();
+
+        const intervalId = setInterval(fetchDataFromContract, 2000);
+
+        return () => clearInterval(intervalId);
       }
-  }, [contract]);
+  }, [contract , everyMillisecondAmount , userAddress]);
 
   useEffect(() => {
     if(contract){
@@ -95,8 +110,12 @@ const Content = () => {
         console.log(result);
       }
       fetchDataFromContract();
+
+      const intervalId = setInterval(fetchDataFromContract, 2000);
+
+       return () => clearInterval(intervalId);
     }
-}, [contract]);
+}, [contract , everyMillisecondAmount , userAddress]);
   
     return (
     <div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import './DataSection.css'
+import './DataSection.css';
+import { Web3Button } from "@thirdweb-dev/react";
 import './main_body.css';  
   const AnsInfoDataSection = ({data}) => {
     return (
@@ -35,6 +36,8 @@ import './main_body.css';
   
   // Data Field Component
   const DataField = ({ field, index , RequestedBy , status }) => {
+    var contractAddress = "0x6Cd365f8524F7c5e3FfD8ab9079292b88FB34927";
+    var userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95";
     return (
       <div className="data-field">
          <div className="on-line">
@@ -63,8 +66,26 @@ import './main_body.css';
           </div>
         </div>
         <div className="on-line_buttons-line">
-        <button className="right_accept">Accept</button>
-        <button className="right_decline">Decline</button>
+        <Web3Button contractAddress= {contractAddress}
+                        action={(contract) => contract.call(
+                            "ansRequestFieldInfo",
+                            [index , 1],{from: userAddress} //0 is the index of Query , and 1 is the if you want to answer
+                        )}
+                        onSuccess={(results)=>{
+                            console.log(results);
+                        }}
+                    className='right_accept'
+            > Accept </Web3Button>
+        <Web3Button contractAddress= {contractAddress}
+                        action={(contract) => contract.call(
+                            "ansRequestFieldInfo",
+                            [index , 2],{from: userAddress} //0 is the index of Query , and 1 is the if you want to answer
+                        )}
+                        onSuccess={(results)=>{
+                            console.log(results);
+                        }}
+                        className='right_decline'
+            > Decline </Web3Button>
         </div> 
       </div>
     );

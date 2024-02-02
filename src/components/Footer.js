@@ -19,16 +19,16 @@ const Footer = () => {
                 </div>
                 <div className="developers">
                     <div className="developers_a">
-                        <div className="names">Paramveer Prakash</div>
-                        <div className="names">Paramveer Prakash</div>
-                        <div className="names">Paramveer Prakash</div>
-                        <div className="names">Paramveer Prakash</div>
+                        <div className="names">Aditya Gupta</div>
+                        <div className="names">Rashaad Ali Baig</div>
+                        <div className="names">Udbhav Gupta</div>
+                        <div className="names">Vivek Parley</div>
                     </div>
                     <div className="developers_b">
+                        <div className="names">Harshit Singh Pakharia</div>
                         <div className="names">Paramveer Prakash</div>
-                        <div className="names">Paramveer Prakash</div>
-                        <div className="names">Paramveer Prakash</div>
-                        <div className="names">Paramveer Prakash</div>
+                        <div className="names">Vaibhav Jangid</div>
+                        <div className="names">Krish Kavya</div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import './DataSection.css'
+import './DataSection.css';
+import { Web3Button } from "@thirdweb-dev/react";
 import './main_body.css';  
   const AnsClaimsDataSection = ({data}) => {
     return (
@@ -25,7 +26,8 @@ import './main_body.css';
               field={field}
               index={index}
               value={data[1][index]}
-              issuer={data[2][index]}
+              RequestedBy={data[2][index]}
+              pending={data[3][index]}
             />
           ))}
         </div>
@@ -34,40 +36,64 @@ import './main_body.css';
   };
   
   // Data Field Component
-  const DataField = ({ field, value, issuer , index }) => {
-    const handleButtonClick = (action, index) => {
-      if(action === 'Accept') //accept it
-      {
-
-      }
-      else  // or decline it
-      {
-
-      }
-    };
+  const DataField = ({ field, value, RequestedBy , index , pending}) => {
+    var contractAddress = "0x6Cd365f8524F7c5e3FfD8ab9079292b88FB34927";
+    var userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95";
     return (
-      <div className="data-field">
-        <div className="on-line">
-          <div className="left-line">
-            <p><strong>Field</strong></p>
+      pending ? (
+        <div className="data-field">
+          <div className="on-line">
+            <div className="left-line">
+              <p><strong>Field</strong></p>
+            </div>
+            <div className="right-line">
+              <p>{field}</p>
+            </div>
           </div>
-          <div className="right-line">
-            <p>{field}</p>
+          <div className="on-line">
+            <div className="left-line">
+              <p><strong>Value</strong></p>
+            </div>
+            <div className="right-line">
+              <p>{value}</p>
+            </div>
+          </div>
+          <div className="on-line">
+            <div className="left-line">
+              <p><strong>Requested By:</strong></p>
+            </div>
+            <div className="right-line">
+              <p>{RequestedBy}</p>
+            </div>
+          </div>
+          <div className="on-line_buttons-line">
+            <Web3Button 
+              contractAddress={contractAddress}
+              action={(contract) => contract.call(
+                "answeringRequestedClaim",
+                [index, 1], // Assuming index is the identifier for the claim, and 1 signifies acceptance
+                {from: userAddress}
+              )}
+              onSuccess={(results) => {
+                console.log(results);
+              }}
+              className='right_accept'
+            > Accept </Web3Button>
+            <Web3Button 
+              contractAddress={contractAddress}
+              action={(contract) => contract.call(
+                "answeringRequestedClaim",
+                [index, 2], // Assuming index is the identifier for the claim, and 2 signifies decline
+                {from: userAddress}
+              )}
+              onSuccess={(results) => {
+                console.log(results);
+              }}
+              className='right_decline'
+            > Decline </Web3Button>
           </div>
         </div>
-        <div className="on-line">
-          <div className="left-line">
-            <p><strong>Requested By:</strong></p>
-          </div>
-          <div className="right-line">
-            <p>{issuer}</p>
-          </div>
-        </div>
-        <div className="on-line_buttons-line">
-          <button className="right_accept" onClick={() => handleButtonClick('Accept', index)}>Accept</button>
-          <button className="right_decline" onClick={() => handleButtonClick('Decline', index)}>Decline</button>
-        </div>
-      </div>
+      ) : null
     );
   };
 

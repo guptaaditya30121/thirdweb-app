@@ -8,22 +8,10 @@
     src: url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@1,300;1,500&display=swap');
 }
 
-html, body{
-    height: 100%;
-   
-    margin: 0;
-    padding: 0;
-}
-header {
-    color: #FFFFEC;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .landingPg {
-    height: 100vh;
+    height: 150vh;
     background: linear-gradient(135deg, #0B1623, #439E9F, #217974);
     color: #FFFFEC; /* Set text color to white */
     padding: 20px; /* Add padding for better readability */
@@ -62,16 +50,8 @@ header {
     align-items: left; */
 }
 
-.button{
-    /* font-size: 20px;
-    font-family: Poppins;
-    padding: 10px 24px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-start;
-    border-radius: 8px;
-     */
-     color: #122631 !important;
+.button{ 
+   color: #122631 !important;
     text-align: center !important;
     font-family: Poppins !important;
     font-size: 24px !important;
@@ -145,6 +125,7 @@ header {
     gap: 2vw;
     overflow-x: scroll;
     margin: 1.5vw;
+    padding: 2vw;
     /* justify-content: center; */
  }
  .line{
@@ -184,9 +165,22 @@ header {
  }
  .temp-cards{
     display: flex;
+    padding: 2vw;
     flex-direction: row;
     gap: 2vw;
     overflow-x: scroll;
     margin: 1.5vw;
     overflow-y: hidden;
+ }
+ .add-property-form{
+    margin-bottom: 5vh;
+ }
+ .property-id-input{
+    margin-bottom: 2vw;
+    margin-right: 1vw;
+    height: 4vh;
+    /* padding: 2vw; */
+    text-align: center;
+    width: 16vw;
+    border-radius: 2vh;
  }

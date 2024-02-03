@@ -1,61 +1,63 @@
-.frame {
+.temp-frame {
     background-color: #ffffec;
     border-radius: 18px;
-    /* height: 32vh; */
+    display: flex;
+    flex-direction: column;
     position: relative;
-    /* width: 25vw; */
+    width: 18vw;
   }
   
-  .frame .overlap-group {
+  .temp-frame .temp-overlap-group {
     background-image: url(./building.png);
     background-size: 100% 100%;
-    height: 17vh;
+    height: 18vh;
     left: 0;
-    position: relative;
-    top: 0.4vh;
-    width: 20vw;
+    position:relative;
+    top: 0.3vh;
+    width:auto;
   }
   
-  .frame .div-wrapper {
+  /* .frame .div-wrapper {
     align-items: center;
     display: inline-flex;
     gap: 10px;
     left: 20px;
     position: relative;
     top: 130px;
-  }
+  } */
   
-  .frame .text-wrapper {
+  .temp-frame .temp-text-wrapper {
     color: #ffffff;
     font-family: "Inter-SemiBold", Helvetica;
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 28px;
-    margin-top: -1px;
+    margin-left: 1vw;
     position: relative;
+    top: 13.5vh;
     text-align: center;
     white-space: nowrap;
     width: fit-content;
   }
   
-  .frame .div {
+  /* .frame .div {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    left: 0.9vw;
-    position: relative;
-    /* top: ; */
-    width: 16vw;
-  }
+    left: 15px;
+    position: absolute;
+    top: 222px;
+    width: 280px;
+  } */
   
-  .frame .text-wrapper-2 {
+  .temp-frame .temp-text-wrapper-2 {
     color: #000000;
     font-family: "Inter-Regular", Helvetica;
-    font-size: 14px;
+    font-size: 0.875em;
     font-weight: 400;
     letter-spacing: 0;
-    line-height: 28px;
+    line-height: 1.75em;
     margin-top: -1px;
     position: relative;
     text-align: center;
@@ -63,13 +65,13 @@
     width: fit-content;
   }
   
-  .frame .text-wrapper-3 {
+  .temp-frame .temp-text-wrapper-3 {
     color: #444444;
     font-family: "Inter-Regular", Helvetica;
-    font-size: 14px;
+    font-size: 0.875em;
     font-weight: 400;
     letter-spacing: 0;
-    line-height: 28px;
+    line-height: 1.75em;
     margin-top: -1px;
     position: relative;
     text-align: center;
@@ -77,30 +79,22 @@
     width: fit-content;
   }
   
-  .frame .div-2 {
+  /* .frame .div-2 {
     align-items: center;
     border: 1px dashed;
     border-color: #00000099;
     border-radius: 8px;
     display: flex;
-    gap: 1vh;
-    height: 2vh;
+    gap: 10px;
+    height: 20px;
     justify-content: center;
-    left: 1vw;
-    position: relative;
-    /* top: 2.8vh; */
-    margin-top: 0.8vh;
-    margin-bottom: 1.5vh;
-    width: 8vw;
-  }
+    left: 15px;
+    position: absolute;
+    top: 264px;
+    width: 130px;
+  } */
   
-  .frame .vector {
-    height: 12px;
-    position: relative;
-    width: 12px;
-  }
-  
-  .frame .text-wrapper-4 {
+  /* .frame .text-wrapper-4 {
     color: #00000099;
     font-family: "Inter-Medium", Helvetica;
     font-size: 12px;
@@ -111,52 +105,16 @@
     text-align: center;
     white-space: nowrap;
     width: fit-content;
-  }
-  
-  .frame .div-3 {
+  } */
+
+  .temp-frame .temp-div-5 {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    left: 0.9vw;
+    left: 1.2vw;
     position: relative;
-    /* top: vh; */
+    top: 0.5vh;
     width: 16vw;
-  }
-  
-  .frame .div-4 {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    left: 0.9vw;
-    position: relative;
-    width: 16vw;
-  }
-  
-  .frame .text-wrapper-5 {
-    color: #000000;
-    font-family: "Inter-Medium", Helvetica;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0;
-    line-height: 28px;
-    margin-top: -1px;
-    position: relative;
-    text-align: center;
-    white-space: nowrap;
-    width: fit-content;
-  }
-  
-  .frame .text-wrapper-6 {
-    color: #444444;
-    font-family: "Inter-Medium", Helvetica;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0;
-    line-height: 28px;
-    margin-top: -1px;
-    position: relative;
-    text-align: center;
-    white-space: nowrap;
-    width: fit-content;
+    padding-bottom: 1vh;
   }
   

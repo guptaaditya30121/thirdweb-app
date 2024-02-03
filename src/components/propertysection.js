@@ -11,25 +11,21 @@ const PropertySection = ({ overlapGroupClassName}) => {
           {/* <div className="text-wrapper">Property Name</div> */}
         </div>
       </div>
+      <div className="div-4">
+        <div className="text-wrapper-5">Name</div>
+        <div className="text-wrapper-6">Time Left</div>
+      </div>
       <div className="div">
+        <div className="text-wrapper-2">Temp Owner Name</div>
+        <div className="text-wrapper-3">69 Hrs</div>
+      </div>
+      <div className="div-3">
         <div className="text-wrapper-2">Temp Owner Name</div>
         <div className="text-wrapper-3">69 Hrs</div>
       </div>
       <div className="div-2">
         <img className="vector" alt="Vector" src={vector} />
         <div className="text-wrapper-4">Give Access</div>
-      </div>
-      <div className="div-3">
-        <div className="text-wrapper-2">Temp Owner Name</div>
-        <div className="text-wrapper-3">69 Hrs</div>
-      </div>
-      <div className="div-4">
-        <div className="text-wrapper-5">Name</div>
-        <div className="text-wrapper-6">Time Left</div>
-      </div>
-      <div className="div-5">
-        <div className="text-wrapper-2">Temp Owner Name</div>
-        <div className="text-wrapper-3">69 Hrs</div>
       </div>
     </div>
   );

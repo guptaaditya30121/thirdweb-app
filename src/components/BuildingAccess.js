@@ -12,8 +12,24 @@ const HomePage = () => {
   const [tempData , settempData] = useState(false);
   const [permData , setPermData] = useState(false);
   const [propertyID, setPropertyID] = useState('');
+  const [propertyID2, setPropertyID2] = useState('');
+  const [userAddress2 , setUserAddress2] = useState('');
+  const [excesstime2 , setExcesstime2] = useState('');
+
   const handleInputChange = (e) => {
     setPropertyID(e.target.value);
+  };
+
+  const handleInputChange1 = (e) => {
+    setPropertyID2(e.target.value);
+  };
+
+  const handleInputChange2 = (e) => {
+    setUserAddress2(e.target.value);
+  };
+
+  const handleInputChange3 = (e) => {
+    setExcesstime2(e.target.value);
   };
 
   useEffect(() => {
@@ -25,7 +41,7 @@ const HomePage = () => {
           {from: userAddress},
         );
         setPermData(result);
-        console.log(result);
+        // console.log(result);
       }
       fetchDataFromContract();
     }
@@ -40,7 +56,7 @@ const HomePage = () => {
           {from: userAddress},
         );
         settempData(result);
-        console.log(result);
+        // console.log(result);
       }
       fetchDataFromContract();
     }
@@ -62,8 +78,9 @@ const HomePage = () => {
         </div>
       </header>
       <hr className="line" /><br /><br />
-      <div className="add-property-form">
-        <h1>Add Your Property</h1>
+      <div className='inputs'>
+      <div className="add-property-form hello">
+        <h1 className='hello2'>Add Your Property</h1>
         <input
           type="text"
           value={propertyID}
@@ -71,8 +88,10 @@ const HomePage = () => {
           placeholder="Enter Property ID"
           className="property-id-input"
         />
+        <div className='button-form'>
         <Web3Button
           contractAddress={contractAddress}
+          style={{backgroundColor: '#217974',color: '#ffffec',fontSize: '20px'}}
           action={(contract) => contract.call(
             "addProperty",
             [parseInt(propertyID) , userAddress], // Assuming the method takes propertyID as a parameter
@@ -85,23 +104,62 @@ const HomePage = () => {
         >
           Add Property
         </Web3Button>
+        </div>
+      </div>
+
+
+
+      <div className="add-property-form hello">
+        <h1 className='hello2'>Grant Access To Your Property</h1>
+        <input
+          type="text"
+          value={propertyID2}
+          onChange={handleInputChange1}
+          placeholder="Enter Property ID"
+          className="property-id-input"
+        />
+        <input
+          type="text"
+          value={userAddress2}
+          onChange={handleInputChange2}
+          placeholder="Enter User Address"
+          className="property-id-input"
+        />
+        <br/>
+        <input
+          type="text"
+          value={excesstime2}
+          onChange={handleInputChange3}
+          placeholder="Enter time"
+          className="property-id-input"
+        />
+        <div className='button-form'>
+        <Web3Button
+          contractAddress={contractAddress}
+          style={{backgroundColor: '#217974',color: 'white',fontSize: '20px'}}
+          action={(contract) => contract.call(
+            "grantAccess",
+            [parseInt(propertyID2) , userAddress2 , excesstime2], // Assuming the method takes propertyID as a parameter
+            {from: userAddress} // You would replace "userAddress" with actual user address variable
+          )}
+          onSuccess={(results) => {
+            console.log(results);
+            // Optionally reset propertyID state here or handle success
+          }}
+        >
+          Grant Access
+        </Web3Button>
+        </div>
+        </div>
       </div>
       <div className="property-sections">
       <div className="property-heading">
         <div className='Perm-Heading'>Permanent Properties</div>
-          <div className="add-property">
-              {/* <button className="add-btn">
-                <div className="box">
-                  <img src={vector} className='Plus'></img>
-                  <div>Add Property</div>
-                </div>
-              </button> */}
-          </div>
       </div>
         <div className="properties">
         {permData.length > 0 ? (
           permData.map((property, index) => (
-            <PropertySection key={index} data={property} />
+            <PropertySection key={index} data={property.toNumber()} />
           ))
         ) : (
           <div>
@@ -117,7 +175,7 @@ const HomePage = () => {
         <div className="temp-cards">
           {tempData.length > 0 ? (
             tempData.map((property, index) => (
-              <TemporaryProperty key={index} data={property} />
+              <TemporaryProperty key={index} data={property.toNumber()} />
             ))
           ) : (
             <div>
@@ -125,6 +183,33 @@ const HomePage = () => {
           )}
         </div>
       </div>
+      </div>
+      <div>
+      <div className="line">
+        </div>
+        <div className='Perm-Heading'>Get Information About Your Property</div>
+        <input
+          type="text"
+          value={propertyID}
+          onChange={handleInputChange}
+          placeholder="Enter Property ID"
+          className="property-id-input"
+        />
+        <Web3Button
+          contractAddress={contractAddress}
+          style={{fontSize: '20px'}}
+          action={(contract) => contract.call(
+            "propertyDetails",
+            [parseInt(propertyID) , userAddress], // Assuming the method takes propertyID as a parameter
+            {from: userAddress} // You would replace "userAddress" with actual user address variable
+          )}
+          onSuccess={(results) => {
+            console.log(results);
+            // Optionally reset propertyID state here or handle success
+          }}
+        >
+          Get Info
+        </Web3Button>
       </div>
     </div>
   );

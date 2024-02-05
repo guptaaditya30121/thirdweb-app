@@ -10,8 +10,15 @@
 
 
 
+.inputs{
+   display: flex;
+   justify-content: space-between;
+   margin-left: 5vw;
+   margin-right: 5vw;
+   margin-bottom: 3vh;
+}
 .landingPg {
-    height: 150vh;
+    height: fit-content;
     background: linear-gradient(135deg, #0B1623, #439E9F, #217974);
     color: #FFFFEC; /* Set text color to white */
     padding: 20px; /* Add padding for better readability */
@@ -179,8 +186,23 @@
     margin-bottom: 2vw;
     margin-right: 1vw;
     height: 4vh;
-    /* padding: 2vw; */
     text-align: center;
-    width: 16vw;
+    width: 450px;
     border-radius: 2vh;
+ }
+
+ .hello{
+   background-color: #FFFFEC;
+ }
+ .add-property-form{
+   color: #0B1623;
+   padding: 2vw;
+ }
+
+ .button-form{
+   display: flex;
+   justify-content:flex-end;
+ }
+ .hello2{
+   text-align: center;
  }

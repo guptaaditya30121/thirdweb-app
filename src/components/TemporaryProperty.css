@@ -117,4 +117,10 @@
     width: 16vw;
     padding-bottom: 1vh;
   }
+  .edit{
+    position: relative;
+    left: -0.6vw;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
   

@@ -44,16 +44,19 @@ const Content = () => {
     useEffect(() => {
         if(contract){
           const fetchDataFromContract = async () => {
-            const result = await contract.call(
-              "getAllClaims",
-              [],
-              {from: userAddress},
-            );
-            setclaimdata(result);
-            console.log(result);
+            try {
+              const result = await contract.call(
+                "getAllClaims",
+                [],
+                {from: userAddress},
+              )
+              setclaimdata(result);
+              console.log(result);
+            } catch (error) {
+              console.log(error)
+            } 
           }
           fetchDataFromContract();
-
           const intervalId = setInterval(fetchDataFromContract, 2000);
 
           return () => clearInterval(intervalId);
@@ -63,16 +66,22 @@ const Content = () => {
     useEffect(() => {
         if(contract){
           const fetchDataFromContract = async () => {
+            try{
             const result = await contract.call(
               "getAllReqFromMeClaims",
               [],
               {from: userAddress},
             );
             setclaimrequestdata(result);
-            console.log(result);
+            console.log(result);}
+            catch(error){
+              console.log(error);
+            }
           }
+          
           fetchDataFromContract();
-
+        
+      
           const intervalId = setInterval(fetchDataFromContract, 2000);
 
           return () => clearInterval(intervalId);
@@ -82,16 +91,21 @@ const Content = () => {
     useEffect(() => {
       if(contract){
         const fetchDataFromContract = async () => {
-          const result = await contract.call(
-            "getAllinfo",
-            [],
-            {from: userAddress},
-          );
-          setinfodata(result);
-          console.log(result);
+          try {
+            const result = await contract.call(
+              "getAllinfo",
+              [],
+              {from: userAddress},
+            );
+            setinfodata(result);
+            console.log(result); 
+          } catch (error) {
+            console.log(error);
+          }
         }
+        
         fetchDataFromContract();
-
+        
         const intervalId = setInterval(fetchDataFromContract, 2000);
 
         return () => clearInterval(intervalId);
@@ -101,16 +115,22 @@ const Content = () => {
   useEffect(() => {
     if(contract){
       const fetchDataFromContract = async () => {
-        const result = await contract.call(
-          "getAllFieldRequestFromMe",
-          [],
-          {from: userAddress},
-        );
-        setrequestinfodata(result);
-        console.log(result);
+      try {
+          const result = await contract.call(
+            "getAllFieldRequestFromMe",
+            [],
+            {from: userAddress},
+          );
+          setrequestinfodata(result);
+          console.log(result);
+         
+      } catch (error) {
+        console.log(error);
       }
+    }
+      
       fetchDataFromContract();
-
+      
       const intervalId = setInterval(fetchDataFromContract, 2000);
 
        return () => clearInterval(intervalId);

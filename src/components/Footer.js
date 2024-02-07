@@ -25,7 +25,7 @@ const Footer = () => {
                         <div className="names">Vivek Parley</div>
                     </div>
                     <div className="developers_b">
-                        <div className="names">Harshit Singh Pakharia</div>
+                        <div className="names">Harshit Singh Pakhariya</div>
                         <div className="names">Paramveer Prakash</div>
                         <div className="names">Vaibhav Jangid</div>
                         <div className="names">Krish Kavya</div>

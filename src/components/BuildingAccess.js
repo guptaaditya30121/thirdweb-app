@@ -4,6 +4,7 @@ import PropertySection from './propertysection';
 import { Web3Button, useAddress, useContract } from "@thirdweb-dev/react";
 import vector from "./vector.png";
 import TemporaryProperty from './TemporaryProperty';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 const HomePage = () => {
   const contractAddress = "0xfd7A76da2356d65E519B91256972a3979aF46Efb";
@@ -73,8 +74,7 @@ const HomePage = () => {
           </a>
         </div>
         <div className="header-right">
-          <a><b>About Us</b></a>
-          <a><b>Contacts</b></a>
+          <Link className="nav_component" to = "/about">About Us</Link>
         </div>
       </header>
       <hr className="line" /><br /><br />

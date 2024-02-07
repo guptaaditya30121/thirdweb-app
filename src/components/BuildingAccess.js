@@ -1,12 +1,14 @@
 import React, { useState , useEffect } from 'react';
 import "./BuildingAccess.css";
 import PropertySection from './propertysection';
+import { ToastContainer, toast } from 'react-toastify';
 import { Web3Button, useAddress, useContract } from "@thirdweb-dev/react";
 import vector from "./vector.png";
 import TemporaryProperty from './TemporaryProperty';
+// import { toast } from 'react-toastify';
 
 const HomePage = () => {
-  const contractAddress = "0xfd7A76da2356d65E519B91256972a3979aF46Efb";
+  const contractAddress = "0xAE1b1cc7FbE40b659D2315a0f5B60fc2AA9eBf43";
   const userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95"
   const { contract } = useContract(contractAddress);
   const [tempData , settempData] = useState(false);
@@ -15,7 +17,10 @@ const HomePage = () => {
   const [propertyID2, setPropertyID2] = useState('');
   const [userAddress2 , setUserAddress2] = useState('');
   const [excesstime2 , setExcesstime2] = useState('');
-
+  const [Transaction , setTransaction] = useState([]);
+  const [Transactiontime , setTransactiontime] = useState([]);
+  const [enterprop , setEnterprop] = useState('');
+  const [isEligible , setIsEligible] = useState(false);
   const handleInputChange = (e) => {
     setPropertyID(e.target.value);
   };
@@ -32,15 +37,43 @@ const HomePage = () => {
     setExcesstime2(e.target.value);
   };
 
+  const handleInputChange4 = (e) => {
+    setEnterprop(e.target.value);
+    console.log("handle button");
+    const fetchDataContract = async() =>{
+      try{
+        const result = await contract.call(
+            "checkAccess",
+            [userAddress , e.target.value],
+            {from : userAddress},
+        );
+        console.log(result)
+        setIsEligible(result);
+      }
+      catch(error){
+        console.log(error);
+        setIsEligible(false);
+      }
+    }
+    if(e.target.value !== "")
+    fetchDataContract();
+    else
+    setIsEligible(false);
+  };
   useEffect(() => {
     if(contract){
       const fetchDataFromContract = async () => {
+        try{
         const result = await contract.call(
           "readUserProperties",
           [userAddress],
           {from: userAddress},
         );
         setPermData(result);
+        }
+        catch(error){
+          console.log(error);
+        }
         // console.log(result);
       }
       fetchDataFromContract();
@@ -50,12 +83,16 @@ const HomePage = () => {
   useEffect(() => {
     if(contract){
       const fetchDataFromContract = async () => {
+        try{
         const result = await contract.call(
           "readTempProperties",
           [userAddress],
           {from: userAddress},
         );
-        settempData(result);
+        settempData(result);}
+        catch(error){
+          console.log(error);
+        }
         // console.log(result);
       }
       fetchDataFromContract();
@@ -65,6 +102,18 @@ const HomePage = () => {
 
   return (
     <div className="landingPg">
+      <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+		  />
       <header>
         <div className="header-left">
           <a className="logo">
@@ -187,7 +236,10 @@ const HomePage = () => {
       <div>
       <div className="line">
         </div>
-        <div className='Perm-Heading'>Get Information About Your Property</div>
+        <div className='down'>
+        <div className='hello add-property-form hey'>
+        <h1 className='hello2'>Get Who Accessed Your Property</h1>
+        <br/>
         <input
           type="text"
           value={propertyID}
@@ -200,16 +252,65 @@ const HomePage = () => {
           style={{fontSize: '20px'}}
           action={(contract) => contract.call(
             "propertyDetails",
-            [parseInt(propertyID) , userAddress], // Assuming the method takes propertyID as a parameter
+            [parseInt(propertyID)], // Assuming the method takes propertyID as a parameter
             {from: userAddress} // You would replace "userAddress" with actual user address variable
           )}
           onSuccess={(results) => {
-            console.log(results);
+            console.log(results.usersWhoAccessed);
+            console.log(results.timeUsersWhoAccesssed);
             // Optionally reset propertyID state here or handle success
+            setTransaction(results.usersWhoAccessed);
+            setTransactiontime(results.timeUsersWhoAccesssed);
+            console.log(Transaction);
+            console.log(Transactiontime);
           }}
         >
           Get Info
         </Web3Button>
+        <div className='property-sections'>
+          <div className="complete-header">
+            <div className="left-info">User</div>
+            <div className="right-info">Time</div>
+          </div>
+        {Transaction.length > 0 && Transactiontime.map((transaction, index) => (
+          <div className="complete-header">
+            <div key={index} className="left-info">
+              {Transaction[index]}
+            </div>
+            <div key={index} className="right-info">
+              {new Date(Transactiontime[index] * 1000).toLocaleString()}
+            </div>
+          </div>
+        ))}
+        </div>
+      </div>
+      <div className='hello add-property-form hey'>
+        <h1 className='hello2'>Enter a property</h1>
+        <br/>
+        <input
+          type="text"
+          value={enterprop}
+          onChange={handleInputChange4}
+          placeholder="Enter Property ID"
+          className="property-id-input"
+        />
+        {isEligible && 
+        <Web3Button
+          contractAddress={contractAddress}
+          style={{fontSize: '20px'}}
+          action={(contract) => contract.call(
+            "userEnter",
+            [userAddress , parseInt(enterprop)], // Assuming the method takes propertyID as a parameter
+            {from: userAddress} // You would replace "userAddress" with actual user address variable
+          )}
+          onSuccess={(results) => {
+              toast.success('User Entered', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
+          }}
+        >
+          Enter
+        </Web3Button>}
+      </div>
+      </div>
       </div>
     </div>
   );

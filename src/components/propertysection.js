@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const PropertySection = ({ overlapGroupClassName, data }) => {
-  const contractAddress = "0xfd7A76da2356d65E519B91256972a3979aF46Efb";
+  const contractAddress = "0xAE1b1cc7FbE40b659D2315a0f5B60fc2AA9eBf43";
   const userAddress = useAddress();
   const { contract } = useContract(contractAddress);
   const [storage, setStorage] = useState({ mainOwner: '', usersWithAccess: [], accessExpiry: [] });
@@ -25,7 +25,7 @@ const PropertySection = ({ overlapGroupClassName, data }) => {
             { from: userAddress },
           );
           setStorage(result);
-          console.log(result);
+          // console.log(result);
           console.error('Data extracted');
 
         } catch (error) {
@@ -72,7 +72,7 @@ const PropertySection = ({ overlapGroupClassName, data }) => {
       </div>
       <div className="div-4">
         <div className="text-wrapper-5">Temporary Owner Name</div>
-        <div className="text-wrapper-6">Time Left</div>
+        <div className="text-wrapper-6">Ending Time</div>
       </div>
       {storage.usersWithAccess.map((address, index) => {
         // Assuming accessExpiry is an array of BigNumber, convert it to readable format

@@ -8,11 +8,21 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useAddress, useContract } from "@thirdweb-dev/react";
 
 const TemporaryProperty = ({ overlapGroupClassName, data }) => {
-  const contractAddress = "0xfd7A76da2356d65E519B91256972a3979aF46Efb";
+  const contractAddress = "0xAE1b1cc7FbE40b659D2315a0f5B60fc2AA9eBf43";
   const userAddress = useAddress(); // Assuming you want to use the connected user's address
   const { contract } = useContract(contractAddress);
-  const [storage, setStorage] = useState({mainOwner: '', usersWithAccess: [], accessExpiry: []});
+  const [storage, setStorage] = useState('');
   const [expiryTime, setExpiryTime] = useState('');
+  const calculateMinutesLeft = (futureTime) => {
+    // Get current Unix timestamp in seconds and convert to minutes
+    const currentTime = Math.floor(Date.now() / 1000 / 60);
+    // Convert future Unix timestamp from seconds to minutes
+    const futureTimeInMinutes = Math.floor(futureTime / 60);
+    // Calculate difference
+    const minutesLeft = futureTimeInMinutes - currentTime;
+
+    return minutesLeft > 0 ? minutesLeft : 0;
+  };
   const copyToClipboard = (text) => {
     
     navigator.clipboard.writeText(text)
@@ -24,32 +34,26 @@ const TemporaryProperty = ({ overlapGroupClassName, data }) => {
       });
   };
   useEffect(() => {
-    if(data && contract){
-      const fetchDataFromContract = async () => {
+    if( data && contract ){
+      const fetchDataContract = async () => {
         try {
           const result = await contract.call(
-            "propertyDetails",
+            "tempOwnerData",
             [data],
-            {from: userAddress},
+            { from: userAddress },
           );
-          setStorage(result);
           console.log(result);
-          
-          // Once storage is set, find the expiry time for userAddress
-          const index = result.usersWithAccess.findIndex(address => address.toLowerCase() === userAddress.toLowerCase());
-          if (index !== -1) {
-            // Assuming accessExpiry is an array of BigNumber, convert it to readable format
-            const expiry = result.accessExpiry[index].toNumber();
-            setExpiryTime(new Date(expiry * 1000).toLocaleString()); // Converts the timestamp to local date string
-          } else {
-            setExpiryTime('Access not found');
-          }
-        } catch (error) {
+          setStorage(result.mainOwner);
+          setExpiryTime(result.expiryTime.toNumber());
+          // console.log(storage);
+          // console.log(expiryTime);
+          console.error('Data extracted');
+        } 
+        catch (error) {
           console.error('Error fetching property details:', error);
-          setExpiryTime('Error fetching expiry time');
         }
       };
-      fetchDataFromContract();
+      fetchDataContract();
     }
   }, [data, contract, userAddress]);
 
@@ -62,9 +66,9 @@ const TemporaryProperty = ({ overlapGroupClassName, data }) => {
       </div>
       <div className="temp-div-5">
         <div className="temp-text-wrapper-2">
-        <FontAwesomeIcon className="edit" icon={faCopy} onClick={() => copyToClipboard(storage.mainOwner)}/>
-        {storage.mainOwner=== undefined ? "Loading..." : storage.mainOwner.slice(0 , 4) +"....." +storage.mainOwner.slice(39 , 42)}</div>
-        <div className="temp-text-wrapper-3">{expiryTime}</div>
+        <FontAwesomeIcon className="edit" icon={faCopy} onClick={() => copyToClipboard(storage)}/>
+        {storage=== undefined ? "Loading..." : storage.slice(0 , 6) +"....." +storage.slice(38 , 42)}</div>
+        <div className="temp-text-wrapper-3">{calculateMinutesLeft(expiryTime) + " min  "}</div>
       </div>
     </div>
   );

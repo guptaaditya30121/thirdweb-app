@@ -93,7 +93,7 @@ function MakeClaimModal({ setOpenModal }) {
                 }}
                 style={{backgroundColor: '#BAE84D',color: 'white',fontSize: '24px'}}
             >
-            Request Claim
+            Request
             </Web3Button>
           <button
             onClick={() => {

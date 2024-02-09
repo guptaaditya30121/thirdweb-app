@@ -12,6 +12,7 @@ import { MediaRenderer } from "@thirdweb-dev/react";
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import { CONTRACT_ADDRESS1 } from './const/addresses.ts';
+import Manas from './components/doc-icon.svg'
 
 const Content = () => {
     const contractAddress = CONTRACT_ADDRESS1;
@@ -82,6 +83,14 @@ const Content = () => {
       }
   }, [contract , everyMillisecondAmount , userAddress]);
 
+  function isImage(hash) {
+    // Extract file extension from the hash
+    const fileExtension = hash.split('.').pop().toLowerCase();
+    // Check if the file extension corresponds to an image type
+    return ['jpg', 'jpeg', 'png', 'gif', 'bmp'].includes(fileExtension);
+  }
+  
+
 
     return (
     <div className='poora-container'>
@@ -107,34 +116,52 @@ const Content = () => {
                       "addUser",
                       [userAddress],{from: userAddress}
                   )}
-                  className='docbutton'
+                  className='docbutton access_contract'
                   onSuccess={(results)=>{
 					toast.success('User Added to DocChain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
                   }}
                   onError={(error)=>{
 					toast.error('User Already Exists', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
                   }}
-                  style={{backgroundColor: 'white', color: 'black',fontSize: '25px' , width: '10vw'}}            
+                  style={{backgroundColor: 'white', color: 'black',fontSize: '1.2vw' , width: '10vw'}}            
               > Access Contract </Web3Button>
             </div>
 
-       <div className='doccontain' {...getRootProps()}>
+       <div className='doccontain access_contract' {...getRootProps()}>
         <input {...getInputProps()} />
         <button className='docbutton'>Click to Add Document</button>
        </div>
 
        <div className='image-grid'>
-      {allHash.map((hash, index) => (
-         <div className='render-block'  key={hash} onClick={() => copyToClipboard(hash)}>
+  {allHash.map((hash, index) => (
+    <div className='render-block' key={hash} onClick={() => copyToClipboard(hash)}>
+      {isImage(hash) ? (
         <MediaRenderer
           className='rendered'
-          key={index} // Using index as key for simplicity, consider using a part of the hash if they are unique
-          src={hash} // Directly using the hash as the src
-          alt={`Document ${hash}`} // Providing a generic alt text, customize as needed
+          key={index}
+          src={hash}
+          alt={`Document ${hash}`}
+        />
+      ) : (
+        <div>
+        <MediaRenderer
+          className='rendered1'
+          key={index}
+          src={hash}
+          alt={"Click To Access"}
+        />
+        <img
+          className='default-image'
+          key={index}
+          src={Manas} // Specify the source for your default image
+          alt={`Default Document ${hash}`}
         />
         </div>
-      ))}
-      </div>
+      )}
+    </div>
+  ))}
+</div>
+
       </div>
       <Footer/>
       </div>

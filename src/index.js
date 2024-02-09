@@ -5,9 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "./styles/globals.css";
 import { Sepolia } from "@thirdweb-dev/chains"
-import { toast } from 'react-toastify';
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 // import dotenv from 'dotenv'
 
 // This is the chain your dApp will work on.

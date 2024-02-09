@@ -5,17 +5,17 @@ import { ConnectWallet } from "@thirdweb-dev/react";
 
 const YourComponent = () => {
   return (
-    <div className="landingPg">
+    <div className="landingPg1">
       <header>
         <div className="header-left">
           <a className="logo">
-            <span>Doc</span>
-            <span className="chain">Chain</span>
+            <span style={{color:'white'}}>Doc</span>
+            <span className="chain" style={{color:'white'}}>Chain</span>
           </a>
         </div>
         <div className="header-right">
-          <a><b>About Us</b></a>
-          <a><b>Contacts</b></a>
+          <a style={{fontSize:'1.2rem'}} href='/about'><b>About</b></a>
+          {/* <a><b>Contacts</b></a> */}
         </div>
       </header>
       <hr className="line" /><br /><br /><br /><br /><br /><br />

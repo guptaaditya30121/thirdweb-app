@@ -69,3 +69,21 @@
   cursor: copy;
   opacity: 0.9;
 }
+
+.rendered1{
+  width: 10vw !important;
+  height: 5vw !important;
+  font-style: italic !important;
+  font-style: normal !important;
+  text-decoration: none !important;
+  position: absolute !important;
+}
+
+.default-image{
+  border-radius: 0%;
+}
+
+.access_contract{
+  margin-top: 2vh !important;
+  margin-bottom: -7vh !important;
+}

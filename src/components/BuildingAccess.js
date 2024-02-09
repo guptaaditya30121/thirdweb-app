@@ -3,7 +3,6 @@ import "./BuildingAccess.css";
 import PropertySection from './propertysection';
 import { ToastContainer, toast } from 'react-toastify';
 import { Web3Button, useAddress, useContract } from "@thirdweb-dev/react";
-import vector from "./vector.png";
 import TemporaryProperty from './TemporaryProperty';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { CONTRACT_ADDRESS2 } from '../const/addresses.ts';
@@ -142,7 +141,7 @@ const HomePage = () => {
         <div className='button-form'>
         <Web3Button
           contractAddress={contractAddress}
-          style={{backgroundColor: '#217974',color: '#ffffec',fontSize: '20px'}}
+          style={{backgroundColor: '#217974',color: '#ffffec',fontSize: '1.25vw'}}
           action={(contract) => contract.call(
             "addProperty",
             [parseInt(propertyID) , userAddress], // Assuming the method takes propertyID as a parameter
@@ -187,7 +186,7 @@ const HomePage = () => {
         <div className='button-form'>
         <Web3Button
           contractAddress={contractAddress}
-          style={{backgroundColor: '#217974',color: 'white',fontSize: '20px'}}
+          style={{backgroundColor: '#217974',color: 'white',fontSize: '1.25vw'}}
           action={(contract) => contract.call(
             "grantAccess",
             [parseInt(propertyID2) , userAddress2 , excesstime2], // Assuming the method takes propertyID as a parameter

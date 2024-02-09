@@ -62,12 +62,12 @@ import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
             <p><strong>Status</strong></p>
           </div>
           <div className="right-line">
-            {status === true && <p>true</p>}
-            {status === false && <p>false</p>}
+            {status === true && <p>Answered</p>}
+            {status === false && <p>Not Ansered</p>}
           </div>
         </div>
-        <div className="on-line_buttons-line">
-        <Web3Button contractAddress= {contractAddress}
+        {!status && <div className="on-line_buttons-line">
+         <Web3Button contractAddress= {contractAddress}
                         action={(contract) => contract.call(
                             "ansRequestFieldInfo",
                             [index , 1],{from: userAddress} //0 is the index of Query , and 1 is the if you want to answer
@@ -87,7 +87,7 @@ import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
                         }}
                         className='right_decline'
             > Decline </Web3Button>
-        </div> 
+        </div> }
       </div>
     );
   };

@@ -1,12 +1,12 @@
 import React from 'react';
 import './DataSection.css';
-import { Web3Button, useAddress } from "@thirdweb-dev/react";
+import { Web3Button, useAddress } from '@thirdweb-dev/react';
 import './main_body.css';  
 import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
   const AnsClaimsDataSection = ({data}) => {
     return (
       <div className='parent_data_div'>
-            <div className="data">
+            <div className='data'>
             <p>
                 <strong>Answer Claim Request</strong>
             </p>
@@ -19,8 +19,8 @@ import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
   // Data Card Component
   const DataCard = ({data}) => {
     return (
-      <div className="data-card">
-        <div className="scroll-container">
+      <div className='data-card'>
+        <div className='scroll-container'>
         { data && data[0].map((field, index) => (
             <DataField
               key={index}
@@ -41,37 +41,38 @@ import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
     var contractAddress = CONTRACT_ADDRESS1;
     var userAddress = useAddress();
     return (
-      pending ? (
-        <div className="data-field">
-          <div className="on-line">
-            <div className="left-line">
+      
+        <div className='data-field'>
+          <div className='on-line'>
+            <div className='left-line'>
               <p><strong>Field</strong></p>
             </div>
-            <div className="right-line">
+            <div className='right-line'>
               <p>{field}</p>
             </div>
           </div>
-          <div className="on-line">
-            <div className="left-line">
+          <div className='on-line'>
+            <div className='left-line'>
               <p><strong>Value</strong></p>
             </div>
-            <div className="right-line">
+            <div className='right-line'>
               <p>{value}</p>
             </div>
           </div>
-          <div className="on-line">
-            <div className="left-line">
+          <div className='on-line'>
+            <div className='left-line'>
               <p><strong>Requested By:</strong></p>
             </div>
-            <div className="right-line">
+            <div className='right-line'>
               <p>{RequestedBy}</p>
             </div>
           </div>
-          <div className="on-line_buttons-line">
+          
+        {  pending && <div className='on-line_buttons-line'>
             <Web3Button 
               contractAddress={contractAddress}
               action={(contract) => contract.call(
-                "answeringRequestedClaim",
+                'answeringRequestedClaim',
                 [index, 1], // Assuming index is the identifier for the claim, and 1 signifies acceptance
                 {from: userAddress}
               )}
@@ -83,7 +84,7 @@ import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
             <Web3Button 
               contractAddress={contractAddress}
               action={(contract) => contract.call(
-                "answeringRequestedClaim",
+                'answeringRequestedClaim',
                 [index, 2], // Assuming index is the identifier for the claim, and 2 signifies decline
                 {from: userAddress}
               )}
@@ -92,9 +93,9 @@ import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
               }}
               className='right_decline'
             > Decline </Web3Button>
-          </div>
+          </div> }
         </div>
-      ) : null
+    
     );
   };
 

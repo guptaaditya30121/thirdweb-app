@@ -25,6 +25,7 @@ import './main_body.css';
               field={field}
               value={data[1][index]}
               issuer={data[2][index]}
+              sender={data[3][index]}
             />
           ))}
         </div>
@@ -33,7 +34,7 @@ import './main_body.css';
   };
   
   // Data Field Component
-  const DataField = ({ field, value, issuer }) => {
+  const DataField = ({ field, value, issuer , sender }) => {
     return (
       <div className="data-field">
         <div className="on-line">
@@ -65,7 +66,7 @@ import './main_body.css';
             <p><strong>Sender</strong></p>
           </div>
           <div className="right-line">
-            <p>{issuer}</p>
+            <p>{sender}</p>
           </div>
         </div>
       </div>

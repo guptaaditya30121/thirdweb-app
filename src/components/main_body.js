@@ -286,7 +286,6 @@ const Content = () => {
       </div>
       <div className="data-section">
         <ClaimDataSection data={claimdata}/>
-        {/* <InfoDataSection data={infodata}/> */}
         <InfoDataSection data={infodata}/>
 
       </div>

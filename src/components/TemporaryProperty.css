@@ -1,6 +1,6 @@
 .temp-frame {
     background-color: #ffffec;
-    border-radius: 18px;
+    border-radius: 0.9vw;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -29,10 +29,10 @@
   .temp-frame .temp-text-wrapper {
     color: #ffffff;
     font-family: "Inter-SemiBold", Helvetica;
-    font-size: 20px;
+    font-size: 1.2vw;
     font-weight: 600;
     letter-spacing: 0;
-    line-height: 28px;
+    line-height: 1.4vw;
     margin-left: 1vw;
     position: relative;
     top: 13.5vh;
@@ -54,7 +54,7 @@
   .temp-frame .temp-text-wrapper-2 {
     color: #000000;
     font-family: "Inter-Regular", Helvetica;
-    font-size: 0.875em;
+    font-size: 0.875vw;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.75em;
@@ -68,7 +68,7 @@
   .temp-frame .temp-text-wrapper-3 {
     color: #444444;
     font-family: "Inter-Regular", Helvetica;
-    font-size: 0.875em;
+    font-size: 1.2vw;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.75em;

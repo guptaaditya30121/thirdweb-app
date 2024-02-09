@@ -76,6 +76,8 @@ function MakeClaimModal({ setOpenModal }) {
                 onSuccess={(results)=>{
                     toast.success('Request of Info added to Blockchain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
                     // setOpenModal(false);	
+                    formData.Field = '';
+                    formData.UserAddress = '';
                 }}
                 onError={(error)=>{
                     toast.error('Claim Failed', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 

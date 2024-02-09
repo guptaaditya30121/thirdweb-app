@@ -8,6 +8,7 @@ import { Sepolia } from "@thirdweb-dev/chains"
 import { toast } from 'react-toastify';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+// import dotenv from 'dotenv'
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -15,11 +16,12 @@ import 'react-toastify/dist/ReactToastify.css';
 const activeChain =  Sepolia ;
 const container = document.getElementById("root");
 const root = createRoot(container);
+const clientID = process.env.REACT_APP_TEMPLATE_CLIENT_ID;
 root.render(
   <React.StrictMode>
     <ThirdwebProvider
       activeChain={activeChain}
-      clientId="cc68726829403494c9bffbba85d514de"
+      clientId={clientID}
     >
       	
       <ToastContainer />

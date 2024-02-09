@@ -6,9 +6,10 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { Web3Button } from "@thirdweb-dev/react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useAddress, useContract } from "@thirdweb-dev/react";
+import { CONTRACT_ADDRESS2 } from '../const/addresses.ts';
 
 const TemporaryProperty = ({ overlapGroupClassName, data }) => {
-  const contractAddress = "0xAE1b1cc7FbE40b659D2315a0f5B60fc2AA9eBf43";
+  const contractAddress = CONTRACT_ADDRESS2;
   const userAddress = useAddress(); // Assuming you want to use the connected user's address
   const { contract } = useContract(contractAddress);
   const [storage, setStorage] = useState('');

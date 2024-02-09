@@ -3,10 +3,10 @@ import './VotingComponent.css';
 import { Web3Button, useAddress, useContract } from "@thirdweb-dev/react";
 import { ToastContainer, toast } from 'react-toastify';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { CONTRACT_ADDRESS3 } from './const/addresses.ts';
 
 const VotingComponent = () => {
-    // State variables
-  const contractAddress = "0xB27Ae08Cc5730AC2E09c558e7e113b559cF41828";
+  const contractAddress = CONTRACT_ADDRESS3;
   const userAddress = useAddress();
   const { contract } = useContract(contractAddress);
   const [purpose, setPurpose] = useState('');   

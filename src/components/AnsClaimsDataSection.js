@@ -1,7 +1,8 @@
 import React from 'react';
 import './DataSection.css';
-import { Web3Button } from "@thirdweb-dev/react";
+import { Web3Button, useAddress } from "@thirdweb-dev/react";
 import './main_body.css';  
+import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
   const AnsClaimsDataSection = ({data}) => {
     return (
       <div className='parent_data_div'>
@@ -37,8 +38,8 @@ import './main_body.css';
   
   // Data Field Component
   const DataField = ({ field, value, RequestedBy , index , pending}) => {
-    var contractAddress = "0x3753c7bFBa3De68EEA1edaaAFDD564dc0fc6fAf9";
-    var userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95";
+    var contractAddress = CONTRACT_ADDRESS1;
+    var userAddress = useAddress();
     return (
       pending ? (
         <div className="data-field">

@@ -19,9 +19,10 @@ import AnsClaimsDataSection from './AnsClaimsDataSection.js';
 import AnsInfoDataSection from './AnsInfoDataSection.js';
 import { useState } from "react";
 import { MediaRenderer } from "@thirdweb-dev/react";
+import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
 
 const Content = () => {
-    const contractAddress = "0x3753c7bFBa3De68EEA1edaaAFDD564dc0fc6fAf9";
+    const contractAddress = CONTRACT_ADDRESS1;
     const userAddress = useAddress();
     const { contract } = useContract(contractAddress);
     const [ openClaimModal, setOpenClaimModal ]  = useState(false);

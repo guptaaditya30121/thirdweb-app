@@ -7,10 +7,11 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import 'react-toastify/dist/ReactToastify.css'; // Ensure you have react-toastify installed and CSS imported
 import { useAddress, useContract } from "@thirdweb-dev/react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { CONTRACT_ADDRESS2 } from "../const/addresses.ts";
 
 
 const PropertySection = ({ overlapGroupClassName, data }) => {
-  const contractAddress = "0xAE1b1cc7FbE40b659D2315a0f5B60fc2AA9eBf43";
+  const contractAddress = CONTRACT_ADDRESS2;
   const userAddress = useAddress();
   const { contract } = useContract(contractAddress);
   const [storage, setStorage] = useState({ mainOwner: '', usersWithAccess: [], accessExpiry: [] });

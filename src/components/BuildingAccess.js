@@ -6,10 +6,11 @@ import { Web3Button, useAddress, useContract } from "@thirdweb-dev/react";
 import vector from "./vector.png";
 import TemporaryProperty from './TemporaryProperty';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { CONTRACT_ADDRESS2 } from '../const/addresses.ts';
 // import { toast } from 'react-toastify';
 
 const HomePage = () => {
-  const contractAddress = "0xAE1b1cc7FbE40b659D2315a0f5B60fc2AA9eBf43";
+  const contractAddress = CONTRACT_ADDRESS2;
   const userAddress = useAddress();
   // const userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95"
   const { contract } = useContract(contractAddress);

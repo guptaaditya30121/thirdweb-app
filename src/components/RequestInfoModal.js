@@ -3,9 +3,10 @@ import "./MakeClaimModal.css";
 import { Web3Button, useAddress, useContract} from "@thirdweb-dev/react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CONTRACT_ADDRESS1 } from "../const/addresses.ts";
 
 function MakeClaimModal({ setOpenModal }) {
-  const contractAddress = "0x3753c7bFBa3De68EEA1edaaAFDD564dc0fc6fAf9";
+  const contractAddress = CONTRACT_ADDRESS1;
   const userAddress = useAddress(); // Define useAddress() function to get user's address
 
   const { contract } = useContract(contractAddress);

@@ -11,34 +11,35 @@ import { useState } from "react";
 import { MediaRenderer } from "@thirdweb-dev/react";
 import Navbar from './components/navbar';
 import Footer from './components/Footer';
+import { CONTRACT_ADDRESS1 } from './const/addresses.ts';
 
 const Content = () => {
-    const contractAddress = "0x3753c7bFBa3De68EEA1edaaAFDD564dc0fc6fAf9";
+    const contractAddress = CONTRACT_ADDRESS1;
     const userAddress = useAddress();
     const { contract } = useContract(contractAddress);
     const [ allHash , setAllHash ] = useState([]);
     const { mutateAsync : upload, isLoading } = useStorageUpload();
+    const addToBlockChain = async(uris) => {
+      try{
+        const result = await contract.call(
+          "enterADocument",
+          [uris[0]],
+          {from: userAddress},
+        )
+        // console.log(result);
+        toast.success('Document Added', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
+      }
+      catch(error)
+      {
+        console.log(error);
+        toast.error('Click on Access Contract, than try!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
+      }
+    }
     const onDrop = useCallback(
         async (acceptorFiles) => {
             const uris = await upload({data : acceptorFiles});
             console.log(uris);
-            if(contract)
-            {
-              try{
-                const result = await contract.call(
-                  "enterADocument",
-                  [uris[0]],
-                  {from: userAddress},
-                )
-                // console.log(result);
-                toast.success('Document Added', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
-              }
-              catch(error)
-              {
-                console.log(error);
-                toast.success('Error in Adding Document', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
-              }
-            }
+            addToBlockChain(uris);
         },
         [upload]
     )
@@ -99,6 +100,24 @@ const Content = () => {
                 pauseOnHover
                 theme="dark"
             />
+         <div className="doccontain">
+              <Web3Button 
+                  contractAddress= {contractAddress}
+                  action={(contract) => contract.call(
+                      "addUser",
+                      [userAddress],{from: userAddress}
+                  )}
+                  className='docbutton'
+                  onSuccess={(results)=>{
+					toast.success('User Added to DocChain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
+                  }}
+                  onError={(error)=>{
+					toast.error('User Already Exists', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
+                  }}
+                  style={{backgroundColor: 'white', color: 'black',fontSize: '25px' , width: '10vw'}}            
+              > Access Contract </Web3Button>
+            </div>
+
        <div className='doccontain' {...getRootProps()}>
         <input {...getInputProps()} />
         <button className='docbutton'>Click to Add Document</button>
@@ -106,7 +125,7 @@ const Content = () => {
 
        <div className='image-grid'>
       {allHash.map((hash, index) => (
-         <div className='render-block' onClick={() => copyToClipboard(hash)}>
+         <div className='render-block'  key={hash} onClick={() => copyToClipboard(hash)}>
         <MediaRenderer
           className='rendered'
           key={index} // Using index as key for simplicity, consider using a part of the hash if they are unique

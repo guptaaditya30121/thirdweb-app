@@ -81,7 +81,7 @@ const PropertySection = ({ overlapGroupClassName, data }) => {
         return (
           <div className="div" key={index}>
             <div className="text-wrapper-2">
-              <FontAwesomeIcon className="edit" icon={faCopy} onClick={() => copyToClipboard(address)}/>
+              <FontAwesomeIcon className="edit copy_clip" icon={faCopy} onClick={() => copyToClipboard(address)}/>
               {address=== undefined ? "Loading..." : address.slice(0 , 4) +"....." +address.slice(39 , 42)}
               </div>
               

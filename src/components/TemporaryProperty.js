@@ -66,7 +66,7 @@ const TemporaryProperty = ({ overlapGroupClassName, data }) => {
       </div>
       <div className="temp-div-5">
         <div className="temp-text-wrapper-2">
-        <FontAwesomeIcon className="edit" icon={faCopy} onClick={() => copyToClipboard(storage)}/>
+        <FontAwesomeIcon className="edit copy_clip" icon={faCopy} onClick={() => copyToClipboard(storage)}/>
         {storage=== undefined ? "Loading..." : storage.slice(0 , 6) +"....." +storage.slice(38 , 42)}</div>
         <div className="temp-text-wrapper-3">{calculateMinutesLeft(expiryTime) + " min  "}</div>
       </div>

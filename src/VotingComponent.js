@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './VotingComponent.css';
 import { Web3Button, useAddress, useContract } from "@thirdweb-dev/react";
 import { ToastContainer, toast } from 'react-toastify';
-import Footer from './components/Footer';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 const VotingComponent = () => {
@@ -137,7 +136,7 @@ const VotingComponent = () => {
         <div className="votingPg">  
             <header>
                 <div className="header-left">
-                <a className="logo">
+                <a className="logo" href='/'>
                     <span>Doc</span>
                     <span className="chain">Chain</span>
                 </a>
@@ -146,18 +145,18 @@ const VotingComponent = () => {
                 <Link className="nav_component" to = "/about">About Us</Link>
                 </div>
             </header>
-            <hr className="line" /><br /><br />
+            <hr className="line" /><br/>
             <div className="master">
                 <div className="voting">
-                    <div>Voting</div>
+                    <div className='voting_header'>Voting</div>
                     <div className="box-voting">
-                        <div>Purpose</div>
+                        <div className='name_input'>Purpose</div>
                         <input className="purposebox" type="text" value={purpose} onChange={(e) => setPurpose(e.target.value)} />
-                        <div>Voting Duration</div>
+                        <div className='name_input'>Voting Duration</div>
                         <div className="superscript">
                             <div className='box'>
                                 <input className="durationbox" type="text" value={durationHours} onChange={(e) => {
-                                    if(e.target.value == "") setDurationHours();
+                                    if(e.target.value === "") setDurationHours();
                                     else setDurationHours(parseInt(e.target.value, 10));
                                     }} 
                                 />
@@ -165,22 +164,21 @@ const VotingComponent = () => {
                             </div>
                             <div className='box'>
                                 <input className="durationbox" type="text" value={durationMinutes} onChange={(e) => {
-                                    if(e.target.value == "") setDurationMinutes();
+                                    if(e.target.value === "") setDurationMinutes();
                                     else setDurationMinutes(parseInt(e.target.value, 10));
                                     }} 
                                 />
                                 <div className="subscript">Minutes</div>
                             </div>
-
                         </div>
-                        <div>No of Candidates </div>
+                        <div className='name_input'>No of Candidates </div>
                         <div className='superscript2'>
                             <div className='box'>
                                 <input className="durationbox" type="text" value={optionNumber} onChange={handleOptionNumberChange} />
                                 <div className="subscript">  Options</div>
                              </div>
                         </div>
-                        {optionNumber !=0 &&<div>Voting Options</div>}
+                        {optionNumber !==0 && optionNumber === "" &&<div>Voting Options</div>}
                         {Array.from({ length: optionNumber }).map((_, index) => (
                             <div>
                             {index + 1}. <input
@@ -191,7 +189,7 @@ const VotingComponent = () => {
                             />
                             </div>
                         ))}
-                        <div>Voters</div>
+                        <div className='name_input'>Voters</div>
                         <div className="superscript2">
                             <div className='box'>
                                 <input className="durationbox" type="text" value={voterNumber} onChange={handleVoterNumberChange} />
@@ -210,6 +208,7 @@ const VotingComponent = () => {
                             </div>
                         ))}
                         <Web3Button 
+                            className='create_poll'
                             contractAddress={contractAddress}
                             action={(contract) => contract.call(
                                 "createNewVoting",
@@ -226,14 +225,14 @@ const VotingComponent = () => {
                             onError={(error)=>{
                                 toast.error(`Creation failed ${error}`, {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
                             }}
-                            style={{backgroundColor: '#FFFFEC', color: 'black',fontSize: '25px', padding: '10px', margin: '10px'}}            
+                            style={{backgroundColor: '#FFFFEC', color: 'black',fontSize: '25px', padding: '12px', margin: '10px'}}            
                         > Create New Poll </Web3Button>
                     </div>
                 </div>
                 <div className="Openvoting">
                     <div className='Title'>
-                        <div>Polls  </div>
-                        <button className="buttons" onClick={handlegetData}>Refresh Polls</button>
+                        <div className='voting_header' style={{marginLeft:'19vw'}}>Polls</div>
+                        <button className="buttons refresh-button" onClick={handlegetData}>Refresh Polls</button>
                     </div>
                     <div className="box-open">
                         <div>
@@ -245,7 +244,7 @@ const VotingComponent = () => {
                                     </div>
                                         {poll[4].map((option, optionIndex) => (
                                         <div>   
-                                            <div key={optionIndex}>
+                                            <div key={optionIndex} className='title_percentage'>
                                                 <div className="option">{optionIndex + 1}. {option}</div>
                                                 <div className="side-option">{poll[3].reduce((a, b) => a + b.toNumber(), 0)!=0 ? ((poll[3][optionIndex].toNumber() / poll[3].reduce((a, b) => a + b.toNumber(), 0)) * 100) : 0}%</div>
                                             </div>
@@ -277,7 +276,6 @@ const VotingComponent = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 };

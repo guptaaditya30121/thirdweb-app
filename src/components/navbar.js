@@ -10,10 +10,14 @@ const Navbar = () => {
   return (
     <div className='navbar'>
     <div className="navbar_left">
-      <Link className="nav_component" to = "/">Home</Link>
+      <a className="logo" href='/'>
+            <span>Doc</span>
+            <span className="chain">Chain</span>
+      </a>
+      <Link className="nav_component" to="/about">About</Link>
       <Link className="nav_component" to="/access">Property Access</Link>
       <Link className="nav_component" to="/voting">Voting</Link>
-      <div className="nav_component">Others</div>
+      <Link className="nav_component" to="/docker">Docker</Link>
     </div>
     <div className='navbar_right'>
       <div className='connectWallet'><ConnectWallet/></div>

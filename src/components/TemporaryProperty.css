@@ -123,4 +123,9 @@
     margin: 0 !important;
     padding: 0 !important;
   }
+
+  .copy_clip{
+    margin-left: -0.6vw !important;
+    margin-right: 1vw !important;
+  }
   

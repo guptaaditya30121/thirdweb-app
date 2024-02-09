@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function MakeClaimModal({ setOpenModal }) {
-  const contractAddress = "0x6Cd365f8524F7c5e3FfD8ab9079292b88FB34927";
+  const contractAddress = "0x3753c7bFBa3De68EEA1edaaAFDD564dc0fc6fAf9";
   const userAddress = useAddress(); // Define useAddress() function to get user's address
 
   const { contract } = useContract(contractAddress);

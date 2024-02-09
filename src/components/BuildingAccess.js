@@ -10,7 +10,8 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 const HomePage = () => {
   const contractAddress = "0xAE1b1cc7FbE40b659D2315a0f5B60fc2AA9eBf43";
-  const userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95"
+  const userAddress = useAddress();
+  // const userAddress = "0x6c47D516004DC29cDb14A5C14D576E41055bDb95"
   const { contract } = useContract(contractAddress);
   const [tempData , settempData] = useState(false);
   const [permData , setPermData] = useState(false);
@@ -117,7 +118,7 @@ const HomePage = () => {
 		  />
       <header>
         <div className="header-left">
-          <a className="logo">
+          <a className="logo" href='/'>
             <span>Doc</span>
             <span className="chain">Chain</span>
           </a>
@@ -240,37 +241,40 @@ const HomePage = () => {
         <div className='hello add-property-form hey'>
         <h1 className='hello2'>Get Who Accessed Your Property</h1>
         <br/>
-        <input
-          type="text"
-          value={propertyID}
-          onChange={handleInputChange}
-          placeholder="Enter Property ID"
-          className="property-id-input"
-        />
-        <Web3Button
-          contractAddress={contractAddress}
-          style={{fontSize: '20px'}}
-          action={(contract) => contract.call(
-            "propertyDetails",
-            [parseInt(propertyID)], // Assuming the method takes propertyID as a parameter
-            {from: userAddress} // You would replace "userAddress" with actual user address variable
-          )}
-          onSuccess={(results) => {
-            console.log(results.usersWhoAccessed);
-            console.log(results.timeUsersWhoAccesssed);
-            // Optionally reset propertyID state here or handle success
-            setTransaction(results.usersWhoAccessed);
-            setTransactiontime(results.timeUsersWhoAccesssed);
-            console.log(Transaction);
-            console.log(Transactiontime);
-          }}
-        >
-          Get Info
-        </Web3Button>
+        <div className="input_wrapper">
+            <input
+              type="text"
+              value={propertyID}
+              onChange={handleInputChange}
+              placeholder="Enter Property ID"
+              className="property-id-input"
+            />
+            <Web3Button
+            className='get_info'
+              contractAddress={contractAddress}
+              style={{fontSize: '20px'}}
+              action={(contract) => contract.call(
+                "propertyDetails",
+                [parseInt(propertyID)], // Assuming the method takes propertyID as a parameter
+                {from: userAddress} // You would replace "userAddress" with actual user address variable
+              )}
+              onSuccess={(results) => {
+                console.log(results.usersWhoAccessed);
+                console.log(results.timeUsersWhoAccesssed);
+                // Optionally reset propertyID state here or handle success
+                setTransaction(results.usersWhoAccessed);
+                setTransactiontime(results.timeUsersWhoAccesssed);
+                console.log(Transaction);
+                console.log(Transactiontime);
+              }}
+            >
+              Get Info
+            </Web3Button>
+        </div>
         <div className='property-sections'>
           <div className="complete-header">
-            <div className="left-info">User</div>
-            <div className="right-info">Time</div>
+            <div className="left-info head1">User</div>
+            <div className="right-info head2">Time</div>
           </div>
         {Transaction.length > 0 && Transactiontime.map((transaction, index) => (
           <div className="complete-header">
@@ -287,28 +291,34 @@ const HomePage = () => {
       <div className='hello add-property-form hey'>
         <h1 className='hello2'>Enter a property</h1>
         <br/>
-        <input
-          type="text"
-          value={enterprop}
-          onChange={handleInputChange4}
-          placeholder="Enter Property ID"
-          className="property-id-input"
-        />
-        {isEligible && 
-        <Web3Button
-          contractAddress={contractAddress}
-          style={{fontSize: '20px'}}
-          action={(contract) => contract.call(
-            "userEnter",
-            [userAddress , parseInt(enterprop)], // Assuming the method takes propertyID as a parameter
-            {from: userAddress} // You would replace "userAddress" with actual user address variable
-          )}
-          onSuccess={(results) => {
-              toast.success('User Entered', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
-          }}
-        >
-          Enter
-        </Web3Button>}
+        <div className="input_wrapper">
+            <input
+              type="text"
+              value={enterprop}
+              onChange={handleInputChange4}
+              placeholder="Enter Property ID"
+              className="property-id-input"
+            />
+            {isEligible && 
+            <Web3Button
+              className='get_info'
+              contractAddress={contractAddress}
+              style={{fontSize: '20px'}}
+              action={(contract) => contract.call(
+                "userEnter",
+                [userAddress , parseInt(enterprop)], // Assuming the method takes propertyID as a parameter
+                {from: userAddress} // You would replace "userAddress" with actual user address variable
+              )}
+              onSuccess={(results) => {
+                  toast.success('User Entered', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
+              }}
+            >
+              Enter
+            </Web3Button>}
+        </div>
+        {!isEligible && 
+          <div style={{color:'red',fontSize:'24px', textAlign:'center'}}>Not eligible to enter into any property!</div>
+        }
       </div>
       </div>
       </div>

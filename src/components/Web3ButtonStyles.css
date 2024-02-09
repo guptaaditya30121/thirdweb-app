@@ -13,5 +13,59 @@
   }
   
   .web3Button:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 7px 17px rgba(0, 0, 0, 0.3);
   }
+
+.docbutton{
+    display: flex;
+    justify-content: center; /* Aligns horizontally */
+    align-items: center;  
+    background-color: #ffffff;
+    color: black;
+    border-radius: 25px;
+    border: 3px solid rgba(186, 232, 77, 1);
+    font-size: 28px;
+    transition: box-shadow 0.1s ease-in-out;
+    margin: 6vw;
+    width: 25vw;
+    height: 6vh;
+}
+
+.docbutton:hover {
+  cursor: pointer;
+  box-shadow: 0 7px 17px rgba(0.1, 0.1, 0.1, 1.5);
+}
+
+.doccontain{
+  display: flex;
+  justify-content: center; /* Aligns horizontally */
+  align-items: center;  
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Creates 4 columns, each taking up an equal fraction of the container's width */
+  margin-left: 3vw;
+}
+
+.rendered {
+  border-radius: 0;
+  max-height: 20vw;
+  max-width: 20vw;
+}
+
+.render-block{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vw;
+  width: 20vw;
+  margin: 10px;
+}
+
+.render-block:hover{
+  box-shadow: 0 7px 17px rgba(0.1, 0.1, 0.1, 1.5);
+  cursor: copy;
+  opacity: 0.9;
+}

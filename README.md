@@ -1,42 +1,35 @@
-# CRA JavaScript Starter
-
-Starter kit to build with Create React App and thirdweb without additional initial configuration.
+# DOC-Chain Frontend
+>The Complete Solution to the Digital Identity Problem. 
 
 ## Installation
 
-Install the template with [thirdweb create](https://portal.thirdweb.com/cli/create)
-
+- Step 1: Clone this repository into your local machine. (See [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository))
+- Step 2: Install all the dependencies. 
 ```bash
- npx thirdweb create --template cra-javascript-starter
+npm install
+```
+- Step 3: Run the React server.
+```bash
+npm start
 ```
 
-## Run Locally
+## Backend
+The const folder inside the src folder contains the addresses of all the smart contracts. We don't have any backend other than three contracts already deployed on the blockchain.
 
-Install dependencies
+# Screens
 
-```bash
-yarn
-```
+## Home Screen
+This screen holds the main structure of the website. It contains different options to perform different tasks to request and send claims to other users or receive and send information to other users. This screen contains the AVATAR for the person, which is made by using GenAI
 
-Start the server
+## Docker Screen
+This screen gives you all the documents uploaded by you, you can upload more documents to it. For managing documents, I have used IPFS as storing big files on the Blockchain is expensive
 
-```bash
-yarn start
-```
+## Voter Screen
+It gives you the option to create new poll. It also shows all the polls in our contract, with it's result. This provides for no tampering mechanism by not showing which user have voted for which option.
 
-## Environment Variables
-
-To run this project, you will need to add the `CLIENT_ID` variables to your .env file.
-
-You can generate your `clientId` and `secretKey` via thirdweb's [dashboard](https://thirdweb.com/create-api-key).
-
-## Deployment
-
-Deploy a copy of your application to IPFS using the following command:
-
-```bash
-yarn deploy
-```
+## Building Access Screen
+This screen shows all your permanent properties, and all your temporary (i.e. someone else have given you access for sometime)
+From this screen you can manage all your properties and all the properties you have access with. You can also check who entered your property using the form in bottom left 
 
 ## Additional Resources
 
@@ -45,12 +38,9 @@ yarn deploy
 - [Video Tutorials](https://youtube.com/thirdweb_)
 - [Blog](https://blog.thirdweb.com)
 
-## Contributing
+## Author Info
 
-Contributions and [feedback](https://feedback.thirdweb.com) are always welcome!
+#### Aditya Gupta
 
-Please visit our [open source page](https://thirdweb.com/open-source) for more information.
-
-## Need help?
-
-For help, join the [discord](https://discord.gg/thirdweb) or visit our [support page](https://support.thirdweb.com).
+- Email - [aditya.cse21@iitg.ac.in](mailto:aditya.cse21@iitg.ac.in)
+- Github - [guptaaditya30121](https://github.com/guptaaditya30121)

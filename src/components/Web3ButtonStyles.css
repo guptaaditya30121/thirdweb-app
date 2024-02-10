@@ -86,7 +86,8 @@
 }
 
 .access_contract{
-  margin-top: 2vh !important;
+  /* margin-top: 2vh !important; */
+  padding-top: 2vh !important;
   margin-bottom: -7vh !important;
 }
 

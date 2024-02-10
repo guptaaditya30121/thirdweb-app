@@ -36,7 +36,6 @@ This screen holds the main structure of the website. It contains different optio
 This screen gives you all the documents uploaded by you, you can upload more documents to it. For managing documents, I have used IPFS as storing big files on the Blockchain is expensive
 
 ![ipfs1](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/ipfs1.png)
-![ipfs2](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/ipfs2.png)
 
 
 ### Voter Screen

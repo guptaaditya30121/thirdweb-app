@@ -118,10 +118,10 @@ const Content = () => {
                   )}
                   className='docbutton access_contract'
                   onSuccess={(results)=>{
-					toast.success('User Added to DocChain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
+					toast.success('Add Your Documents!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
                   }}
                   onError={(error)=>{
-					toast.error('User Already Exists', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
+										toast.success('Add Your Documents!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
                   }}
                   style={{backgroundColor: 'white', color: 'black',fontSize: '1.2vw' , width: '10vw'}}            
               > Access Contract </Web3Button>
@@ -134,7 +134,7 @@ const Content = () => {
 
        <div className='image-grid'>
   {allHash.map((hash, index) => (
-    <div className='render-block' key={hash} onClick={() => copyToClipboard(hash)}>
+    <div className='render-block' key={index} onClick={() => copyToClipboard(hash)}>
       {isImage(hash) ? (
         <MediaRenderer
           className='rendered'

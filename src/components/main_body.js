@@ -91,7 +91,7 @@ const Content = () => {
             } 
           }
           fetchDataFromContract();
-          const intervalId = setInterval(fetchDataFromContract, 200000);
+          const intervalId = setInterval(fetchDataFromContract, 2000);
 
           return () => clearInterval(intervalId);
         }
@@ -113,7 +113,7 @@ const Content = () => {
           } 
         }
         fetchDataFromContract();
-        const intervalId = setInterval(fetchDataFromContract, 200000);
+        const intervalId = setInterval(fetchDataFromContract, 2000);
 
         return () => clearInterval(intervalId);
       }
@@ -138,7 +138,7 @@ const Content = () => {
           fetchDataFromContract();
         
       
-          const intervalId = setInterval(fetchDataFromContract, 200000);
+          const intervalId = setInterval(fetchDataFromContract, 2000);
 
           return () => clearInterval(intervalId);
         }
@@ -162,7 +162,7 @@ const Content = () => {
         
         fetchDataFromContract();
         
-        const intervalId = setInterval(fetchDataFromContract, 200000);
+        const intervalId = setInterval(fetchDataFromContract, 2000);
 
         return () => clearInterval(intervalId);
       }
@@ -187,7 +187,7 @@ const Content = () => {
       
       fetchDataFromContract();
       
-      const intervalId = setInterval(fetchDataFromContract, 200000);
+      const intervalId = setInterval(fetchDataFromContract, 2000);
 
        return () => clearInterval(intervalId);
     }

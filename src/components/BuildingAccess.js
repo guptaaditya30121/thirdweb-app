@@ -23,6 +23,7 @@ const HomePage = () => {
   const [Transactiontime , setTransactiontime] = useState([]);
   const [enterprop , setEnterprop] = useState('');
   const [isEligible , setIsEligible] = useState(false);
+  const [usAdd , setUsAdd] = useState('');
   const handleInputChange = (e) => {
     setPropertyID(e.target.value);
   };
@@ -46,7 +47,7 @@ const HomePage = () => {
       try{
         const result = await contract.call(
             "checkAccess",
-            [userAddress , e.target.value],
+            [usAdd , e.target.value],
             {from : userAddress},
         );
         console.log(result)
@@ -62,6 +63,32 @@ const HomePage = () => {
     else
     setIsEligible(false);
   };
+
+  const handleInputChange5 = (e) => {
+    setUsAdd(e.target.value);
+    console.log("handle button");
+    const fetchDataContract = async() =>{
+      try{
+        const result = await contract.call(
+            "checkAccess",
+            [e.target.value , enterprop],
+            {from : userAddress},
+        );
+        console.log(result)
+        setIsEligible(result);
+      }
+      catch(error){
+        console.log(error);
+        setIsEligible(false);
+      }
+    }
+    if(e.target.value !== "")
+    fetchDataContract();
+    else
+    setIsEligible(false);
+  };
+
+
   useEffect(() => {
     if(contract){
       const fetchDataFromContract = async () => {
@@ -148,6 +175,7 @@ const HomePage = () => {
             {from: userAddress} // You would replace "userAddress" with actual user address variable
           )}
           onSuccess={(results) => {
+            setPropertyID('');
             console.log(results);
             // Optionally reset propertyID state here or handle success
           }}
@@ -194,6 +222,9 @@ const HomePage = () => {
           )}
           onSuccess={(results) => {
             console.log(results);
+            setPropertyID2('');
+            setUserAddress2('');
+            setExcesstime2('');
             // Optionally reset propertyID state here or handle success
           }}
         >
@@ -266,6 +297,7 @@ const HomePage = () => {
                 setTransactiontime(results.timeUsersWhoAccesssed);
                 console.log(Transaction);
                 console.log(Transactiontime);
+                setPropertyID('');
               }}
             >
               Get Info
@@ -289,7 +321,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className='hello add-property-form hey'>
-        <h1 className='hello2'>Enter a property</h1>
+        <h1 className='hello2'>Allow in Your Property</h1>
         <br/>
         <div className="input_wrapper">
             <input
@@ -299,6 +331,13 @@ const HomePage = () => {
               placeholder="Enter Property ID"
               className="property-id-input"
             />
+            <input
+              type="text"
+              value={usAdd}
+              onChange={handleInputChange5}
+              placeholder="Enter User Address"
+              className="property-id-input"
+            />
             {isEligible && 
             <Web3Button
               className='get_info'
@@ -306,7 +345,7 @@ const HomePage = () => {
               style={{fontSize: '20px'}}
               action={(contract) => contract.call(
                 "userEnter",
-                [userAddress , parseInt(enterprop)], // Assuming the method takes propertyID as a parameter
+                [usAdd , parseInt(enterprop)], // Assuming the method takes propertyID as a parameter
                 {from: userAddress} // You would replace "userAddress" with actual user address variable
               )}
               onSuccess={(results) => {

@@ -67,6 +67,16 @@ import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
               <p>{RequestedBy}</p>
             </div>
           </div>
+          <div className='on-line'>
+            <div className='left-line'>
+              <p><strong>Status:</strong></p>
+            </div>
+            <div className='right-line'>
+              {!pending && <p>Answered</p>}
+              {pending && <p>Not Answered</p>}
+
+            </div>
+          </div>
           
         {  pending && <div className='on-line_buttons-line'>
             <Web3Button 

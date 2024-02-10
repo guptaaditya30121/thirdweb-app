@@ -2,6 +2,8 @@
     background-color: #ffffec;
     border-radius: 1vw;
     /* height: 32vh; */
+    height: 24vh;
+    overflow: scroll;
     position: relative;
     /* width: 25vw; */
   }

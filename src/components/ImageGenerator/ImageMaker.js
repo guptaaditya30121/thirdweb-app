@@ -13,7 +13,7 @@ function ImageMakerModal({ setImage, setOpenModal }) {
     console.log("form" + formData);
 
     var raw = JSON.stringify({
-      key: "svYuVLPf7ItFmz7bPxxNpWCAh3beaL0zS2KA35ZizBNk4PASPdXllgKeIvux",
+      key: "ALtsCF312qEbst7OitUhG7Kda6eLq7ndLMps87XeerdnSBhUaOCTUwb98n7R",
       prompt: formData, // take this from the user
       negative_prompt: null,
       width: "512",

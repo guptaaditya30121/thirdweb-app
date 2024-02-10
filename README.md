@@ -53,7 +53,7 @@ This screen displays all your permanent properties, as well as any temporary one
 
 ### dotenv
 Create a .env file and place your clientId of the third-web account in REACT_APP_TEMPLATE_CLIENT_ID. To obtain your private key, sign in to your third-web account, then navigate to settings > API Key and create the API Key. Afterwards, copy and paste the client ID.
-
+(REACT_APP_TEMPLATE_CLIENT_ID = cc68726829403494c9bffbba85d514de).
 [GenAI api](https://stablediffusionapi.com/), Go to this website, Login and go to the dashboard. Go to settings and generate your api key
 and copy and paste this api key to the env file in STABLE_API
 

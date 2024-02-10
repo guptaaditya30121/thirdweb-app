@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './HomePage.js'; // Your existing page
 import BuildingAccess from './BuildingAccess.js'
-import AboutUs from './components/AboutUs.js';
 import Voting from './VotingPage.js'
 import Docker from './DockerPage.js'
+import AboutUs from './AboutUs.js';
 
 function App() {
   return (

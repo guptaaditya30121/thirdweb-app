@@ -3,6 +3,7 @@ import {useStorageUpload} from '@thirdweb-dev/react'
 import { useDropzone }from 'react-dropzone';
 import './main_body.css';
 import avatar from './avatar.jpg';
+import ImageMakerModal from "./ImageMaker.js";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -28,10 +29,12 @@ const Content = () => {
     const [ openClaimModal, setOpenClaimModal ]  = useState(false);
     const [ openReqModal, setOpenReqModal ]  = useState(false);
     const [ openReqInfoModal , setOpenReqInfoModal ] = useState(false);
+    const [openImageModal, setOpenImageModal] = useState(false);
     const [ claimdata, setclaimdata] = useState(false);
     const [ claimrequestdata, setclaimrequestdata] = useState(false);
     const [ infodata, setinfodata] = useState(false);
     const [ requestinfodata, setrequestinfodata] = useState(false);
+    const [image, setImage] = useState("");
     const [ allHash , setAllHash ] = useState([]);
     const { mutateAsync : upload, isLoading } = useStorageUpload();
     const onDrop = useCallback(
@@ -76,7 +79,12 @@ const Content = () => {
     );
 
     useEffect(() => {
+      
         if(contract){
+          if(image == ""){
+            const url = localStorage.getItem("image-url");
+            if(url) setImage(localStorage.getItem("image-url"));
+          }
           const fetchDataFromContract = async () => {
             try {
               const result = await contract.call(
@@ -198,6 +206,8 @@ const Content = () => {
         {openClaimModal  && <MakeClaimModal setOpenModal={setOpenClaimModal} />}
         {openReqModal && <RequestClaimModal setOpenModal={setOpenReqModal} />}
         {openReqInfoModal && <RequestInfoModal setOpenModal={setOpenReqInfoModal} />}
+        {openImageModal && (
+        <ImageMakerModal setImage={setImage} setOpenModal={setOpenImageModal} /> )}
     <div className='master_container'>
 
 		<ToastContainer
@@ -245,11 +255,28 @@ const Content = () => {
             </div>
         </div>
         <div className="profile">
-            <div className="avatar_box">
-                <img src={avatar} alt=""/>
-            </div>
-            
-            <div>
+        <div className="avatar_box">
+              <img src={image!="" ? image : avatar} alt="" />
+              <div className="AddProfile">
+                <div className="generateButton">
+                  <Web3Button
+                    contractAddress={contractAddress}
+                    action={() => {
+                      setOpenImageModal(true);
+                    }}
+                    style={{
+                      backgroundColor: "white",
+                      color: "black",
+                      fontSize: "20px",
+                    }}
+                  >
+                    Generate Profile
+                  </Web3Button>
+                </div>
+                {/* <button onClick={() => setOpenImageModal(true)}>
+                  Generate Profile
+                </button> */}
+              </div>
             </div>
             <div className="username" >
               {userAddress=== undefined ? "Loading..." : userAddress.slice(0 , 6) +"....." +userAddress.slice(38 , 42)}

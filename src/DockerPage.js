@@ -19,28 +19,32 @@ const Content = () => {
     const userAddress = useAddress();
     const { contract } = useContract(contractAddress);
     const [ allHash , setAllHash ] = useState([]);
+    const [ status , setStatus ] = useState(0);
+    const [ hash , setHash ] = useState('');
     const { mutateAsync : upload, isLoading } = useStorageUpload();
-    const addToBlockChain = async(uris) => {
-      try{
-        const result = await contract.call(
-          "enterADocument",
-          [uris[0]],
-          {from: userAddress},
-        )
-        // console.log(result);
-        toast.success('Document Added', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
-      }
-      catch(error)
-      {
-        console.log(error);
-        toast.error('Click on Access Contract, than try!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
-      }
-    }
+    // const addToBlockChain = async(uris) => {
+    //   try{
+    //     const result = await contract.call(
+    //       "enterADocument",
+    //       [uris[0]],
+    //       {from: userAddress},
+    //     )
+    //     // console.log(result);
+    //     toast.success('Document Added', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
+    //   }
+    //   catch(error)
+    //   {
+    //     console.log(error);
+    //     toast.error('Click on Access Contract, than try!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"});     
+    //   }
+    // }
     const onDrop = useCallback(
         async (acceptorFiles) => {
             const uris = await upload({data : acceptorFiles});
             console.log(uris);
-            addToBlockChain(uris);
+            // addToBlockChain(uris);
+            setStatus(1);
+            setHash(uris[0]);
         },
         [upload]
     )
@@ -109,28 +113,44 @@ const Content = () => {
                 pauseOnHover
                 theme="dark"
             />
-         <div className="doccontain">
-              <Web3Button 
-                  contractAddress= {contractAddress}
-                  action={(contract) => contract.call(
-                      "addUser",
-                      [userAddress],{from: userAddress}
-                  )}
-                  className='docbutton access_contract'
-                  onSuccess={(results)=>{
-					toast.success('Add Your Documents!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
-                  }}
-                  onError={(error)=>{
-										toast.success('Add Your Documents!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
-                  }}
-                  style={{backgroundColor: 'white', color: 'black',fontSize: '1.2vw' , width: '10vw'}}            
-              > Access Contract </Web3Button>
-            </div>
-
+    {status === 0 &&
        <div className='doccontain access_contract' {...getRootProps()}>
         <input {...getInputProps()} />
         <button className='docbutton'>Click to Add Document</button>
-       </div>
+       </div>}
+    {status === 1 && hash!=='' &&
+      <div className='doccontain access_contract'>
+                <Web3Button 
+                  contractAddress= {contractAddress}
+                  action={(contract) => contract.call(
+                      "enterADocument",
+                      [hash],{from: userAddress}
+                  )}
+                  className='docbutton access_contract'
+                  onSuccess={(results)=>{
+					toast.success('Added Your Document to Block-Chain!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
+                    setStatus(0);
+                  }}
+                  onError={(error)=>{
+                    console.log(error);
+										toast.error('Upload Failed!', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 	
+                    setStatus(0);
+                  }}
+                  style={{backgroundColor: 'white', color: 'black',fontSize: '1.4vw' , width: '15vw'}}            
+              > Add it to BlockChain </Web3Button>
+             
+<br/>
+                <br/>
+                
+                <br/>
+                <p className='hash-val'  onClick={() => copyToClipboard(hash)}>{hash}</p>
+                <br/><br/>
+                
+                <br/>
+                <br/>
+                <br/>
+     </div>}
+
 
        <div className='image-grid'>
   {allHash.map((hash, index) => (
@@ -158,6 +178,7 @@ const Content = () => {
         />
         </div>
       )}
+      
     </div>
   ))}
 </div>

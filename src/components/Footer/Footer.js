@@ -1,5 +1,5 @@
 import React from "react";
-import manas_lion from './manas_lion.png'
+import manas_lion from '../Assets/manas_lion.png'
 import './Footer.css'
 
 const Footer = () => {

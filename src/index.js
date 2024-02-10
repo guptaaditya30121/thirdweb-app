@@ -21,7 +21,6 @@ root.render(
       activeChain={activeChain}
       clientId={clientID}
     >
-      	
       <ToastContainer />
       <App />
     </ThirdwebProvider>

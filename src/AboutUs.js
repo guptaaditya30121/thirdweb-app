@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import "./AboutUs.css";
-import Navbar from './components/navbar';
-import Footer from './components/Footer';
+import Navbar from './components/NavBar/navbar';
+import Footer from './components/Footer/Footer';
 
 export default function AboutUs(){
     return (

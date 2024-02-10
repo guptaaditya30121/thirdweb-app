@@ -11,7 +11,7 @@ function ImageMakerModal({ setImage, setOpenModal }) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     console.log("form" + formData);
-    
+
     var raw = JSON.stringify({
       key: "svYuVLPf7ItFmz7bPxxNpWCAh3beaL0zS2KA35ZizBNk4PASPdXllgKeIvux",
       prompt: formData, // take this from the user
@@ -49,32 +49,31 @@ function ImageMakerModal({ setImage, setOpenModal }) {
         localStorage.setItem("image-url", data.output);
         setOpenModal(false);
         toast.success("Image Generated", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
         });
-        
       })
       .catch((error) => {
         console.error(error);
         toast.error("Image Generation Failed", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       });
 
-      setFormData('');
+    setFormData("");
   };
 
   return (

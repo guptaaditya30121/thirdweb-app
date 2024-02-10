@@ -1,10 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./MakeClaimModal.css";
-import { Web3Button, useAddress, useContract, useContractWrite } from "@thirdweb-dev/react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { CONTRACT_ADDRESS1 } from '../const/addresses.ts';
+import {
+  Web3Button,
+  useAddress,
+  useContract,
+  useContractWrite,
+} from "@thirdweb-dev/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CONTRACT_ADDRESS1 } from "../../const/addresses.ts";
 
 function MakeClaimModal({ setOpenModal }) {
   const contractAddress = CONTRACT_ADDRESS1;
@@ -12,9 +17,9 @@ function MakeClaimModal({ setOpenModal }) {
 
   const { contract } = useContract(contractAddress);
   const [formData, setFormData] = useState({
-    Field: '',
-    Value: '',
-    UserAddress: '',
+    Field: "",
+    Value: "",
+    UserAddress: "",
   });
 
   const handleInputChange = (e) => {
@@ -74,32 +79,55 @@ function MakeClaimModal({ setOpenModal }) {
           <br />
         </form>
         <div className="footer">
-        <Web3Button
-                contractAddress = {contractAddress}
-                action={() => {
-                    if(contract){
-                        contract.call("makeClaim", [formData.UserAddress,formData.Field,formData.Value], {from: userAddress});
-                        console.log("ho");
-                    }
-                    else{
-                        console.log("poo");
-                    }
-                }}
-                onSuccess={(results)=>{
-                    toast.success('Claim added to Blockchain', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
-                    formData.Field = '';
-                    formData.UserAddress = '';
-                    formData.Value = '';
-                    // setOpenModal(false);	
-                }}
-                onError={(error)=>{
-                    toast.error('Claim Failed', {position: "top-right",autoClose: 5000,hideProgressBar: false,closeOnClick: true,pauseOnHover: true,draggable: true,progress: undefined,theme: "dark"}); 
-                    // setOpenModal(false);
-                }}
-                style={{backgroundColor: '#BAE84D',color: 'white',fontSize: '24px'}}
-            >
+          <Web3Button
+            contractAddress={contractAddress}
+            action={() => {
+              if (contract) {
+                contract.call(
+                  "makeClaim",
+                  [formData.UserAddress, formData.Field, formData.Value],
+                  { from: userAddress }
+                );
+                console.log("ho");
+              } else {
+                console.log("poo");
+              }
+            }}
+            onSuccess={(results) => {
+              toast.success("Claim added to Blockchain", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              });
+              formData.Field = "";
+              formData.UserAddress = "";
+              formData.Value = "";
+            }}
+            onError={(error) => {
+              toast.error("Claim Failed", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+              });
+            }}
+            style={{
+              backgroundColor: "#BAE84D",
+              color: "white",
+              fontSize: "24px",
+            }}
+          >
             Make Claim
-            </Web3Button>
+          </Web3Button>
           <button
             onClick={() => {
               setOpenModal(false);

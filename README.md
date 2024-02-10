@@ -26,17 +26,29 @@ The const folder inside the src folder contains the addresses of all the smart c
 ### Home Screen
 This screen holds the main structure of the website. It contains different options to perform different tasks to request and send claims to other users or receive and send information to other users. This screen contains the AVATAR for the person, which is made by using GenAI
 
+![Home1](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/Home1.png)
+![Home2](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/Home2.png)
+![Home3](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/Home3.png)
+
+
 
 ### Docker Screen
 This screen gives you all the documents uploaded by you, you can upload more documents to it. For managing documents, I have used IPFS as storing big files on the Blockchain is expensive
+
+![ipfs1](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/ipfs1.png)
 
 
 ### Voter Screen
 It offers the option to create a new poll and displays all the polls in our contract along with their results. This ensures there is no tampering mechanism by not revealing which users have voted for which option.
 
+![Voting1](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/Voting1.png)
+
 
 ### Building Access Screen
 This screen displays all your permanent properties, as well as any temporary ones (i.e., properties to which someone else has granted you access for a limited time). From this screen, you can manage all your properties, including those to which you have access. Additionally, you can check who has entered your property using the form in the bottom left corner 
+
+![Property1](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/Property1.png)
+![Property2](https://github.com/vaibhavj2111/thirdweb-app/blob/readme/img/Property2.png)
 
 
 ### dotenv
